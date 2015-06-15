@@ -77,5 +77,6 @@ namespace NewBlog.WebUI.Controllers
             WebSecurity.Logout();
             return RedirectToAction("Posts", "Blog");
         }
+
     }
 }
