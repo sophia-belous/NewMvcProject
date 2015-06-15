@@ -23,6 +23,28 @@
                     <li>@Html.ActionLink("Posts", "Posts")</li>
                     <li>@Html.ActionLink("About", "About")</li>
                     <li>@Html.ActionLink("Contact", "Contact")</li>
+
+                    @{
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <li>@Html.ActionLink("Logout", "Logout")</li>
+                            <li><strong style="color:white">@User.Identity.Name</strong> |
+                            @{
+                                if (Roles.GetRolesForUser().Length > 0)
+                                {
+                                    <strong style="color:white">@Roles.GetRolesForUser()[0]</strong>                                                                    
+                                }                                		 
+	                        }
+                    
+                            </li> 
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Login", "Login")</li>
+                            <li>@Html.ActionLink("Register", "Register")</li>
+                        }
+                    }
+                                       
                 </ul>
             </div>
         </div>

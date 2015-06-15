@@ -1,0 +1,34 @@
+﻿@using NewBlog.WebUI.Models
+@model Register
+@{
+    ViewBag.Title = "Register";
+    List<SelectListItem> roles = new List<SelectListItem>
+    {
+        new SelectListItem()
+        {
+            Text = "admin",
+            Value = "admin"
+        },
+        new SelectListItem()
+        {
+            Text = "user",
+            Value = "user"
+        }
+    };
+}
+
+<h2>Register</h2>
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary()
+        <label>Enter Username</label>
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+        <label>Enter Password</label>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        
+        <button class="btn btn-primary">Register</button>
+    }
+</div>
+
