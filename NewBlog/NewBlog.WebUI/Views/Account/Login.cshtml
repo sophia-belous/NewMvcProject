@@ -1,0 +1,16 @@
+﻿@model NewBlog.WebUI.Models.Login
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<div>
+    @using(Html.BeginForm())
+    {
+        <label>Enter Username</label>
+        @Html.TextBoxFor(m => m.Username, new { @class="form-control" })
+        <label>Enter Password</label>
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" }) 
+    }
+</div>
+

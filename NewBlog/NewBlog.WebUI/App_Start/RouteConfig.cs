@@ -14,10 +14,37 @@ namespace NewBlog.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                "Post",
+                "Archive/{year}/{month}/{title}",
+                new { controller = "Blog", action = "Post" }
+                );
+
+
+            routes.MapRoute(
+                "Tag",
+                "Tag/{tag}",
+                new { controller = "Blog", action = "Tag" }
+                );
+
+
+            routes.MapRoute(
+                "Category",
+                "Category/{category}",
+                new { controller = "Blog", action = "Category" }
+                );
+
+            routes.MapRoute(
+                "Login",
+                "Login",
+                new { controller = "Account", action = "Login" }
+                );
+
+            routes.MapRoute(
+                "Action",
+                "{action}",
+                new { controller = "Blog", action = "Posts" }
+                );
+
         }
     }
 }
