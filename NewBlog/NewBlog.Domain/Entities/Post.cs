@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace NewBlog.Domain.Entities
 {
@@ -15,6 +16,8 @@ namespace NewBlog.Domain.Entities
         public int CategoryId { get; set; }
         public string Title { get; set; }
         public string ShortDescription { get; set; }
+
+        [UIHint("tinymce_jquery_full"), AllowHtml]
         public string Description { get; set; }
         public string UrlSlug { get; set; }
         public string ImgUrl { get; set; }

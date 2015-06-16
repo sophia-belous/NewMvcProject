@@ -34,6 +34,7 @@ namespace NewBlog.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IBlogRepository>().To<BlogRepository>();
+            kernel.Bind<IAdminRepository>().To<AdminRepository>();
         }
 
     }

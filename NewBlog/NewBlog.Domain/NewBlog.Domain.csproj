@@ -76,7 +76,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAdminRepository.cs" />
     <Compile Include="Abstract\IBlogRepository.cs" />
+    <Compile Include="Concrete\AdminRepository.cs" />
     <Compile Include="Concrete\BlogDbContext.cs" />
     <Compile Include="Concrete\BlogRepository.cs" />
     <Compile Include="Entities\Category.cs" />

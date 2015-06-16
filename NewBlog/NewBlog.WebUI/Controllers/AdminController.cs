@@ -1,4 +1,5 @@
 ﻿using NewBlog.Domain.Abstract;
+using NewBlog.Domain.Entities;
 using NewBlog.WebUI.Models;
 using System;
 using System.Collections.Generic;
@@ -10,25 +11,22 @@ namespace NewBlog.WebUI.Controllers
 {
     public class AdminController : Controller
     {
-        IBlogRepository _blogRepository;
+        IAdminRepository _adminRepository;
 
-        public AdminController(IBlogRepository blogRepository)
+        public AdminController(IAdminRepository adminRepository)
         {
-            _blogRepository = blogRepository;
+            _adminRepository = adminRepository;
         }
 
-        public ViewResult List(int p = 1)
+        public ViewResult List()
         {
-            var viewModel = new ListViewModel(_blogRepository, p);
-            return View(viewModel);
+            return View(_adminRepository.Posts());
         }
 
-        public ViewResult Post(int year, int month, string title)
+        public ViewResult Edit(int id)
         {
-            var post = _blogRepository.Post(year, month, title);
-
-            if (post == null)
-                throw new HttpException(404, "Post not found");
+            Post post = _adminRepository.Posts()
+                .FirstOrDefault(g => g.Id == id);
 
             return View(post);
         }
