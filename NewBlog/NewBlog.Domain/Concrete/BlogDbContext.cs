@@ -12,7 +12,8 @@ namespace NewBlog.Domain.Concrete
     {
         public BlogDbContext()
             : base("BlogDbContext")
-        { 
+        {
+            Database.SetInitializer<BlogDbContext>(null);
         }
         public DbSet<Post> Posts { get; set; }
         public DbSet<Comment> Comments { get; set; }

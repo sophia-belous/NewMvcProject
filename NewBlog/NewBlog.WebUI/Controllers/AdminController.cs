@@ -3,32 +3,121 @@ using NewBlog.Domain.Entities;
 using NewBlog.WebUI.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
 namespace NewBlog.WebUI.Controllers
 {
+    [Authorize(Roles="Admin")]
     public class AdminController : Controller
     {
-        IAdminRepository _adminRepository;
+        IBlogRepository _blogRepository;
 
-        public AdminController(IAdminRepository adminRepository)
+        public AdminController(IBlogRepository blogRepository)
         {
-            _adminRepository = adminRepository;
+            _blogRepository = blogRepository;
         }
 
         public ViewResult List()
         {
-            return View(_adminRepository.Posts());
+            return View(_blogRepository.Posts());
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            Tag tag = _blogRepository.GetFirstTag();
+            List<Tag> tags = new List<Tag>() { tag };
+            Post post = new Post() { Tags = tags };
+            IList<Tag> allTags = _blogRepository.Tags();
+            int[] tagIndexes = post.Tags.Select(x => x.TagId).ToArray();
+
+            EditViewModel evm = new EditViewModel();
+            evm.Post = post;
+            evm.Tags = new MultiSelectList(allTags, "TagId", "Name", tagIndexes);
+
+            return View(evm);
+        }
+
+        [HttpPost]
+        public ActionResult Create(EditViewModel evm)
+        {
+            if (ModelState.IsValid)
+            {
+                List<Tag> tags = new List<Tag>();
+                IList<Tag> allTags = _blogRepository.Tags();
+                for (int i = 0; i < evm.TagIndexes.Length; i++)
+                {
+                    tags.Add(allTags.First(t => t.TagId == evm.TagIndexes[i]));
+                }
+                evm.Post.Tags = tags;
+
+                _blogRepository.SavePost(evm.Post);
+                TempData["message"] = string.Format(" Post \"{0}\" was created", evm.Post.Title);
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return View(evm.Post);
+            }
+
+        }
+
+
+        [HttpGet]
         public ViewResult Edit(int id)
         {
-            Post post = _adminRepository.Posts()
+            Post post = _blogRepository.Posts()
                 .FirstOrDefault(g => g.Id == id);
 
-            return View(post);
+            IList<Tag> allTags = _blogRepository.Tags();
+
+            int[] tagIndexes = post.Tags.Select(x => x.TagId).ToArray();
+
+            EditViewModel evm = new EditViewModel();
+            evm.Post = post;
+            evm.Tags = new MultiSelectList(allTags, "TagId", "Name", tagIndexes);
+
+            return View(evm);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(EditViewModel evm)
+        {
+
+            if (ModelState.IsValid)
+            {
+                List<Tag> tags = new List<Tag>();
+                IList<Tag> allTags = _blogRepository.Tags();
+                for (int i = 0; i < evm.TagIndexes.Length; i++)
+                {
+                    tags.Add(allTags.First(t => t.TagId == evm.TagIndexes[i]));
+                }
+                evm.Post.Tags = tags;
+
+                _blogRepository.SavePost(evm.Post);
+                TempData["message"] = string.Format("Changes in Post \"{0}\" were saved", evm.Post.Title);
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return View(evm.Post);
+            }
+        }
+
+        [HttpPost] // бля, ну так стоп))) так тут же post
+        public ActionResult Delete(int id)
+        {
+            Post deletedPost = _blogRepository.DeletePost(id);
+            if (deletedPost != null)
+            {
+                TempData["message"] = string.Format("Post \"{0}\" was deleted",
+                    deletedPost.Title);
+            }
+            return RedirectToAction("List");
         }
     }
 }

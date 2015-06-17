@@ -29,6 +29,9 @@
                     @Html.DisplayNameFor(model => model.PostedOn)
                 </th>
                 <th>
+                    @Html.DisplayNameFor(model => model.Modified)
+                </th>
+                <th>
                     @Html.DisplayNameFor(model => model.Published)
                 </th>
                 <th></th>
@@ -52,24 +55,22 @@
                         @item.PostedOn.ToConfigLocalTime()
                     </td>
                     <td>
+                        @item.Modified
+                    </td>
+                    <td>
                         @Html.DisplayFor(m => item.Published)
                     </td>
 
                     <td>
-                        @using (Html.BeginForm("Edit", "Admin"))
-                        {
-                            @Html.Hidden("Id", item.Id)
-                            <input type="submit"
-                                   class="btn btn-default btn-xs"
-                                   value="Edit" />
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id },
+                      new { @class = "btn btn-warning btn-xs" })
 
-                        }
                         @using (Html.BeginForm("Delete", "Admin"))
                         {
-                            @Html.Hidden("Id", item.Id)
-                            <input type="submit"
-                                   class="btn btn-default btn-xs"
-                                   value="Delete" />                            
+                            @Html.Hidden("id", item.Id)
+                            <input type="submit" class="btn btn-danger btn-xs" 
+                                   onclick="return confirm('Are you sure you want to delete this Post?');"
+                                   value="Delete" />
                         }
                     </td>
                 </tr>
@@ -83,6 +84,6 @@
     </div>
     <div class="panel-footer">
         @Html.ActionLink("Create new", "Create", null,
-            new { @class = "btn btn-default" })
+            new { @class = "btn btn-success" })
     </div>
 </div>

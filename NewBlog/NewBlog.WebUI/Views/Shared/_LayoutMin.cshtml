@@ -7,6 +7,10 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+        <script src="~/Scripts/tinymce/tiny_mce.js"></script>
+    <script>
+        tinymce.init({ selector: 'textarea' });
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -53,6 +57,11 @@
     </div>
     <div class="container body-content">
         <br />
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+
         @RenderBody()
         <hr />
         <footer>

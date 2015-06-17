@@ -169,5 +169,55 @@ namespace NewBlog.Domain.Concrete
         {
             return _blogContext.Tags.OrderBy(p => p.Name).ToList();
         }
+
+        public IList<Post> Posts()
+        {
+            return _blogContext.Posts.ToList();
+        }
+
+
+        public void SavePost(Post post)
+        {
+            if (post.Id == 0)
+            {
+                post.PostedOn = DateTime.Now;
+                _blogContext.Posts.Add(post);                
+            }
+            else
+            {
+                Post postFind = _blogContext.Posts.Include("Tags").Single(p => p.Id == post.Id);
+
+                if (postFind != null)
+                {
+                    postFind.Title = post.Title;
+                    postFind.ShortDescription = post.ShortDescription;
+                    postFind.Description = post.Description;
+                    postFind.Category = post.Category;
+                    postFind.Modified = DateTime.Now;
+                    postFind.Published = post.Published;
+                    postFind.Tags = post.Tags.ToList();
+                    postFind.UrlSlug = post.UrlSlug;
+                }
+            }
+
+            _blogContext.SaveChanges();
+        }
+
+        public Tag GetFirstTag()
+        {
+            return _blogContext.Tags.First();
+        }
+
+
+        public Post DeletePost(int id)
+        {
+            Post dbEntry = _blogContext.Posts.Find(id);
+            if (dbEntry != null)
+            {
+                _blogContext.Posts.Remove(dbEntry);
+                _blogContext.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }

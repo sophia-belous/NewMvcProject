@@ -14,10 +14,15 @@ namespace NewBlog.Domain.Entities
         [Key]
         public int Id { get; set; }
         public int CategoryId { get; set; }
+
+        [Required(ErrorMessage = "Please, enter title of post")]
         public string Title { get; set; }
+
+        [Required(ErrorMessage = "Please, enter short description of post")]
         public string ShortDescription { get; set; }
 
         [UIHint("tinymce_jquery_full"), AllowHtml]
+        [Required(ErrorMessage = "Please, enter description of post")]
         public string Description { get; set; }
         public string UrlSlug { get; set; }
         public string ImgUrl { get; set; }

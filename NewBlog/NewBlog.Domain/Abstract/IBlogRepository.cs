@@ -9,6 +9,7 @@ namespace NewBlog.Domain.Abstract
 {
     public interface IBlogRepository
     {
+        
         IList<Post> Posts(int pageNo, int pageSize);
         int TotalPosts();
 
@@ -27,6 +28,14 @@ namespace NewBlog.Domain.Abstract
 
         IList<Category> Categories();
         IList<Tag> Tags();
+
+        IList<Post> Posts();
+        
+        void SavePost(Post post);
+        Post DeletePost(int id);
+
+        Tag GetFirstTag();
+
 
 
 
