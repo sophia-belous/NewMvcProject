@@ -25,7 +25,7 @@ namespace NewBlog.Domain.Abstract
         IList<Post> PostsForSearch(string search, int pageNo, int pageSize);
         int TotalPostsForSearch(string search);
 
-        Post Post(int year, int month, string titleSlug);
+        Post Post(int id);//вот тут были месяц год это че slug ну доже не нужно
 
         IList<Category> Categories();
         IList<Tag> Tags();

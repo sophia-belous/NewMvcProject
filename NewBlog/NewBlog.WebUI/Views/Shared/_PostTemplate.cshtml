@@ -39,13 +39,10 @@
     </div>
 
     <div class="post-foot">
-        @Html.ActionLink("continue...", "post", "blog",
+        @Html.ActionLink("continue...", "Post", "Blog",
         new
         {
-            year = Model.PostedOn.Year,
-            month = Model.PostedOn.Month,
-            day = Model.PostedOn.Day,
-            title = Model.UrlSlug
+            id = Model.Id,
         },
         new { title = "continue..." }
     )

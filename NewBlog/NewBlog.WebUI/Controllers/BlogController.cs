@@ -26,10 +26,10 @@ namespace NewBlog.WebUI.Controllers
             return View("List", viewModel);
         }
 
-        public ViewResult Post(int year, int month, string title)
+        public ViewResult Post(int id)
         {
             CommentPostModel cpm = new CommentPostModel();
-                cpm.Post = _blogRepository.Post(year, month, title);
+                cpm.Post = _blogRepository.Post(id);
                 cpm.Comment = new Comment() { PostId = cpm.Post.Id };
 
             if (cpm.Post == null)
@@ -109,7 +109,7 @@ namespace NewBlog.WebUI.Controllers
         {
             comment.CommentedOn = DateTime.Now;
             comment.User = _blogRepository.Users().First(x => x.Username == User.Identity.Name);
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) 
             {
                 _blogRepository.SaveComment(comment);
                 return RedirectToAction("Post", new { id = comment.PostId });

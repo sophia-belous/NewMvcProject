@@ -157,15 +157,14 @@ namespace NewBlog.Domain.Concrete
 
         }
 
-        public Post Post(int year, int month, string titleSlug)
+        public Post Post(int id)
         {
-            var query = _blogContext.Posts
-                        .Where(p => p.PostedOn.Year == year && p.PostedOn.Month == month && p.UrlSlug.Equals(titleSlug))
-                        .Include(p => p.Category);
+            //var query = _blogContext.Posts.Where(p => p.UrlSlug.Equals(titleSlug))
+            //            .Include(p => p.Category);
 
-            query.Include(p => p.Tags);
+            //query.Include(p => p.Tags);
 
-            return query.Single();
+            return _blogContext.Posts.Single(p => p.Id == id);
 
         }
 

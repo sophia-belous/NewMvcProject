@@ -14,10 +14,8 @@ namespace NewBlog.WebUI
         {
             return helper.ActionLink(post.Title, "Post", "Blog", 
                 new { 
-                    year = post.PostedOn.Year, 
-                    month = post.PostedOn.Month, 
-                    title = post.UrlSlug 
-                }, 
+                    id = post.Id
+                },
                 new { 
                     title = post.Title 
                 });
