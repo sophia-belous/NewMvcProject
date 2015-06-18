@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace NewBlog.Domain.Entities
 {
-    public class Like
+    [Table("UserProfile")]
+    public class UserProfile
     {
         [Key]
-        public int LikeId { get; set; }
         public int UserId { get; set; }
-        public int PostId { get; set; }
+        public string Username { get; set; }
 
-        [ForeignKey("UserId")]
-        public virtual UserProfile User { get; set; }
-        public virtual Post Post { get; set; }
+        public virtual IList<Like> Likes { get; set; }
+        public virtual IList<Comment> Comments { get; set; }
     }
 }

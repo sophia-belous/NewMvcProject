@@ -1,7 +1,7 @@
-﻿@model NewBlog.Domain.Entities.Post
+﻿@model NewBlog.WebUI.Models.CommentPostModel
 
 @{
-    ViewBag.Title = Model.Title;
+    ViewBag.Title = Model.Post.Title;
 }
 
 <div id="content">
@@ -10,32 +10,40 @@
             <div class="row">
 
                 <div class="post-title">
-                    <h1>@Html.PostLink(Model)</h1>
+                    <h1>@Html.PostLink(Model.Post)</h1>
                 </div>
 
             </div>
             <div class="row">
 
                 <div class="post-category">
-                    <span>Category:</span> @Html.CategoryLink(Model.Category)
+                    <span>Category:</span> @Html.CategoryLink(Model.Post.Category)
                 </div>
 
                 <div class="post-tags">
-                    <span>Tags:</span> @Helpers.Tags(Html, Model.Tags)
+                    <span>Tags:</span> @Helpers.Tags(Html, Model.Post.Tags)
                 </div>
 
                 <div class="posted-date">
-                    @Model.PostedOn.ToConfigLocalTime()
+                    @Model.Post.PostedOn.ToConfigLocalTime()
                 </div>
 
             </div>
         </div>
 
         <div class="post-body">
-            @Html.Raw(Model.Description)
+            @Html.Raw(Model.Post.Description)
         </div>
+
+        @Html.Action("AddComment", "Blog", new { postId = Model.Post.Id })
+        @Html.Partial("_Comments", Model.Post.Comments)
 
     </div>
 </div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
 

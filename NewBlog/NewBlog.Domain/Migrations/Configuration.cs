@@ -25,7 +25,7 @@ namespace NewBlog.Domain.Migrations
             //      new Person { FullName = "Andrew Peters" },
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
-            //    );
+            //    );так вроде шось получилось не
             //
         }
     }

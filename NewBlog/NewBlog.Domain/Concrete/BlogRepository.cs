@@ -17,7 +17,17 @@ namespace NewBlog.Domain.Concrete
         {
             _blogContext = blogContext;
 
-            /*Category cat = _blogContext.Categories.First();
+           /* _blogContext.Tags.Add(new Tag() { Name = "Cool", UrlSlug = "Cool" });
+            _blogContext.Tags.Add(new Tag() { Name = "Interesting", UrlSlug = "Interesting" });
+            _blogContext.Tags.Add(new Tag() { Name = "ILike", UrlSlug = "ILike" });
+            _blogContext.Tags.Add(new Tag() { Name = "Buetifull", UrlSlug = "Buetifull" });
+            _blogContext.Tags.Add(new Tag() { Name = "SomeTag", UrlSlug = "SomeTag" });
+            _blogContext.Tags.Add(new Tag() { Name = "NewTag", UrlSlug = "NewTag" });
+
+            _blogContext.SaveChanges();
+
+
+            Category cat = _blogContext.Categories.First();
             Tag tag = _blogContext.Tags.First();
             List<Tag> tags = new List<Tag>() { tag };
 
@@ -218,6 +228,25 @@ namespace NewBlog.Domain.Concrete
                 _blogContext.SaveChanges();
             }
             return dbEntry;
+        }
+
+        public IList<UserProfile> Users()
+        {
+            return _blogContext.Users.ToList();
+        }
+
+
+        public IList<Comment> Comments()
+        {
+            return _blogContext.Comments.ToList();
+        }
+
+        public void SaveComment(Comment comment)
+        {
+            comment.CommentedOn = DateTime.Now;
+            _blogContext.Comments.Add(comment);
+
+            _blogContext.SaveChanges();
         }
     }
 }

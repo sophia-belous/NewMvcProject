@@ -1,0 +1,191 @@
+﻿Merge branch 'master' of https://github.com/sophia-belous/NewMvcProject
+
+Conflicts:
+	NewBlog/NewBlog.WebUI/App_Data/BlogData.mdf
+	NewBlog/NewBlog.WebUI/App_Data/BlogData_log.ldf
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commit each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .gitignore
+#	deleted:    NewBlog/packages/Antlr.3.4.1.9004/Antlr.3.4.1.9004.nupkg
+#	deleted:    NewBlog/packages/Antlr.3.4.1.9004/lib/Antlr3.Runtime.dll
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/EntityFramework.6.1.3.nupkg
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/content/App.config.transform
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/content/Web.config.transform
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/lib/net40/EntityFramework.SqlServer.dll
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/lib/net40/EntityFramework.SqlServer.xml
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/lib/net40/EntityFramework.dll
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/lib/net40/EntityFramework.xml
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.SqlServer.dll
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.SqlServer.xml
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/lib/net45/EntityFramework.xml
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/tools/EntityFramework.PowerShell.Utility.dll
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/tools/EntityFramework.PowerShell.dll
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/tools/EntityFramework.psd1
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/tools/EntityFramework.psm1
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/tools/about_EntityFramework.help.txt
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/tools/init.ps1
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/tools/install.ps1
+#	deleted:    NewBlog/packages/EntityFramework.6.1.3/tools/migrate.exe
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Mvc.5.0.0/Microsoft.AspNet.Mvc.5.0.0.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Mvc.5.0.0/lib/net45/System.Web.Mvc.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Mvc.5.0.0/lib/net45/System.Web.Mvc.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Mvc.5.2.2/Content/Web.config.install.xdt
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Mvc.5.2.2/Content/Web.config.uninstall.xdt
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Mvc.5.2.2/Microsoft.AspNet.Mvc.5.2.2.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Mvc.5.2.2/lib/net45/System.Web.Mvc.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Mvc.5.2.2/lib/net45/System.Web.Mvc.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Razor.3.0.0/Microsoft.AspNet.Razor.3.0.0.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Razor.3.0.0/lib/net45/System.Web.Razor.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Razor.3.0.0/lib/net45/System.Web.Razor.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Razor.3.2.3/Microsoft.AspNet.Razor.3.2.3.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Razor.3.2.3/lib/net45/System.Web.Razor.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Razor.3.2.3/lib/net45/System.Web.Razor.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Web.Optimization.1.1.3/Microsoft.AspNet.Web.Optimization.1.1.3.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Web.Optimization.1.1.3/lib/net40/System.Web.Optimization.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.Web.Optimization.1.1.3/lib/net40/system.web.optimization.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebHelpers.3.2.3/Microsoft.AspNet.WebHelpers.3.2.3.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebHelpers.3.2.3/lib/net45/Microsoft.Web.Helpers.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/Microsoft.AspNet.WebPages.3.0.0.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/lib/net45/System.Web.Helpers.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/lib/net45/System.Web.Helpers.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/lib/net45/System.Web.WebPages.Deployment.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/lib/net45/System.Web.WebPages.Deployment.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/lib/net45/System.Web.WebPages.Razor.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/lib/net45/System.Web.WebPages.Razor.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/lib/net45/System.Web.WebPages.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.0.0/lib/net45/System.Web.WebPages.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/Content/Web.config.install.xdt
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/Content/Web.config.uninstall.xdt
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/Microsoft.AspNet.WebPages.3.2.3.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/lib/net45/System.Web.Helpers.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/lib/net45/System.Web.Helpers.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/lib/net45/System.Web.WebPages.Deployment.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/lib/net45/System.Web.WebPages.Deployment.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/lib/net45/System.Web.WebPages.Razor.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/lib/net45/System.Web.WebPages.Razor.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/lib/net45/System.Web.WebPages.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.3.2.3/lib/net45/System.Web.WebPages.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.Data.3.2.3/Microsoft.AspNet.WebPages.Data.3.2.3.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.Data.3.2.3/lib/net45/WebMatrix.Data.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.Data.3.2.3/lib/net45/WebMatrix.Data.xml
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.WebData.3.2.3/Microsoft.AspNet.WebPages.WebData.3.2.3.nupkg
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.WebData.3.2.3/lib/net45/WebMatrix.WebData.dll
+#	deleted:    NewBlog/packages/Microsoft.AspNet.WebPages.WebData.3.2.3/lib/net45/WebMatrix.WebData.xml
+#	deleted:    NewBlog/packages/Microsoft.Web.Infrastructure.1.0.0.0/Microsoft.Web.Infrastructure.1.0.0.0.nupkg
+#	deleted:    NewBlog/packages/Microsoft.Web.Infrastructure.1.0.0.0/lib/net40/Microsoft.Web.Infrastructure.dll
+#	deleted:    NewBlog/packages/Microsoft.jQuery.Unobtrusive.Validation.3.2.2/Content/Scripts/jquery.validate.unobtrusive.js
+#	deleted:    NewBlog/packages/Microsoft.jQuery.Unobtrusive.Validation.3.2.2/Content/Scripts/jquery.validate.unobtrusive.min.js
+#	deleted:    NewBlog/packages/Microsoft.jQuery.Unobtrusive.Validation.3.2.2/Microsoft.jQuery.Unobtrusive.Validation.3.2.2.nupkg
+#	deleted:    NewBlog/packages/Modernizr.2.6.2/Content/Scripts/modernizr-2.6.2.js
+#	deleted:    NewBlog/packages/Modernizr.2.6.2/Modernizr.2.6.2.nupkg
+#	deleted:    NewBlog/packages/Modernizr.2.6.2/Tools/common.ps1
+#	deleted:    NewBlog/packages/Modernizr.2.6.2/Tools/install.ps1
+#	deleted:    NewBlog/packages/Modernizr.2.6.2/Tools/uninstall.ps1
+#	deleted:    NewBlog/packages/Moq.4.1.1309.1617/Moq.4.1.1309.1617.nupkg
+#	deleted:    NewBlog/packages/Moq.4.1.1309.1617/lib/net35/Moq.dll
+#	deleted:    NewBlog/packages/Moq.4.1.1309.1617/lib/net35/Moq.xml
+#	deleted:    NewBlog/packages/Moq.4.1.1309.1617/lib/net40/Moq.dll
+#	deleted:    NewBlog/packages/Moq.4.1.1309.1617/lib/net40/Moq.xml
+#	deleted:    NewBlog/packages/Moq.4.1.1309.1617/lib/sl4/Moq.Silverlight.dll
+#	deleted:    NewBlog/packages/Moq.4.1.1309.1617/lib/sl4/Moq.Silverlight.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/Newtonsoft.Json.6.0.4.nupkg
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/net20/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/net20/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/net35/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/net35/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/net40/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/net40/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/net45/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/net45/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/netcore45/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/netcore45/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/portable-net40%2Bsl5%2Bwp80%2Bwin8%2Bwpa81/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/portable-net40%2Bsl5%2Bwp80%2Bwin8%2Bwpa81/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/portable-net40+sl5+wp80+win8+wpa81/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/portable-net45%2Bwp80%2Bwin8%2Bwpa81/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/portable-net45%2Bwp80%2Bwin8%2Bwpa81/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.xml
+#	deleted:    NewBlog/packages/Newtonsoft.Json.6.0.4/tools/install.ps1
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/Ninject.3.0.1.10.nupkg
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/net35/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/net35/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/net40/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/net40/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/net45-full/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/net45-full/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl2/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl2/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl3-wp/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl3-wp/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl3/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl3/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl4-windowsphone71/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl4-windowsphone71/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl4/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl4/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl5/Ninject.dll
+#	deleted:    NewBlog/packages/Ninject.3.0.1.10/lib/sl5/Ninject.xml
+#	deleted:    NewBlog/packages/Ninject.MVC3.3.0.0.6/Ninject.MVC3.3.0.0.6.nupkg
+#	deleted:    NewBlog/packages/Ninject.MVC3.3.0.0.6/lib/net40-full/Ninject.Web.Mvc.dll
+#	deleted:    NewBlog/packages/Ninject.MVC3.3.0.0.6/lib/net40-full/Ninject.Web.Mvc.xml
+#	deleted:    NewBlog/packages/Ninject.MVC3.3.0.0.6/lib/net45-full/Ninject.Web.Mvc.dll
+#	deleted:    NewBlog/packages/Ninject.MVC3.3.0.0.6/lib/net45-full/Ninject.Web.Mvc.xml
+#	deleted:    NewBlog/packages/Ninject.Web.Common.3.0.0.7/Content/App_Start/NinjectWebCommon.cs.pp
+#	deleted:    NewBlog/packages/Ninject.Web.Common.3.0.0.7/Ninject.Web.Common.3.0.0.7.nupkg
+#	deleted:    NewBlog/packages/Ninject.Web.Common.3.0.0.7/lib/net35-full/Ninject.Web.Common.dll
+#	deleted:    NewBlog/packages/Ninject.Web.Common.3.0.0.7/lib/net35-full/Ninject.Web.Common.xml
+#	deleted:    NewBlog/packages/Ninject.Web.Common.3.0.0.7/lib/net40-full/Ninject.Web.Common.dll
+#	deleted:    NewBlog/packages/Ninject.Web.Common.3.0.0.7/lib/net40-full/Ninject.Web.Common.xml
+#	deleted:    NewBlog/packages/Ninject.Web.Common.3.0.0.7/lib/net45-full/Ninject.Web.Common.dll
+#	deleted:    NewBlog/packages/Ninject.Web.Common.3.0.0.7/lib/net45-full/Ninject.Web.Common.xml
+#	deleted:    NewBlog/packages/Respond.1.2.0/Respond.1.2.0.nupkg
+#	deleted:    NewBlog/packages/Respond.1.2.0/content/Scripts/respond.js
+#	deleted:    NewBlog/packages/Respond.1.2.0/content/Scripts/respond.min.js
+#	deleted:    NewBlog/packages/WebActivator.1.5/WebActivator.1.5.nupkg
+#	deleted:    NewBlog/packages/WebActivator.1.5/lib/net40/WebActivator.dll
+#	deleted:    NewBlog/packages/WebGrease.1.5.2/WebGrease.1.5.2.nupkg
+#	deleted:    NewBlog/packages/WebGrease.1.5.2/lib/WebGrease.dll
+#	deleted:    NewBlog/packages/WebGrease.1.5.2/tools/WG.exe
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/bootstrap.3.0.0.nupkg
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/content/Content/bootstrap.css
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/content/Content/bootstrap.min.css
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/content/Scripts/bootstrap.js
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/content/Scripts/bootstrap.min.js
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/content/fonts/glyphicons-halflings-regular.eot
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/content/fonts/glyphicons-halflings-regular.svg
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/content/fonts/glyphicons-halflings-regular.ttf
+#	deleted:    NewBlog/packages/bootstrap.3.0.0/content/fonts/glyphicons-halflings-regular.woff
+#	deleted:    NewBlog/packages/jQuery.1.10.2/Content/Scripts/jquery-1.10.2-vsdoc.js
+#	deleted:    NewBlog/packages/jQuery.1.10.2/Content/Scripts/jquery-1.10.2.js
+#	deleted:    NewBlog/packages/jQuery.1.10.2/Content/Scripts/jquery-1.10.2.min.js
+#	deleted:    NewBlog/packages/jQuery.1.10.2/Content/Scripts/jquery-1.10.2.min.map
+#	deleted:    NewBlog/packages/jQuery.1.10.2/Tools/common.ps1
+#	deleted:    NewBlog/packages/jQuery.1.10.2/Tools/install.ps1
+#	deleted:    NewBlog/packages/jQuery.1.10.2/Tools/jquery-1.10.2.intellisense.js
+#	deleted:    NewBlog/packages/jQuery.1.10.2/Tools/uninstall.ps1
+#	deleted:    NewBlog/packages/jQuery.1.10.2/jQuery.1.10.2.nupkg
+#	deleted:    NewBlog/packages/jQuery.Validation.1.11.1/Content/Scripts/jquery.validate-vsdoc.js
+#	deleted:    NewBlog/packages/jQuery.Validation.1.11.1/Content/Scripts/jquery.validate.js
+#	deleted:    NewBlog/packages/jQuery.Validation.1.11.1/Content/Scripts/jquery.validate.min.js
+#	deleted:    NewBlog/packages/jQuery.Validation.1.11.1/jQuery.Validation.1.11.1.nupkg
+#	deleted:    NewBlog/packages/repositories.config
+#
+

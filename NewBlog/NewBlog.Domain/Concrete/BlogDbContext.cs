@@ -20,6 +20,7 @@ namespace NewBlog.Domain.Concrete
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Like> Likes { get; set; }
+        public DbSet<UserProfile> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

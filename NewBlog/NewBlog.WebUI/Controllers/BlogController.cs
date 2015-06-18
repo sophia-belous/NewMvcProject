@@ -28,15 +28,17 @@ namespace NewBlog.WebUI.Controllers
 
         public ViewResult Post(int year, int month, string title)
         {
-            var post = _blogRepository.Post(year, month, title);
+            CommentPostModel cpm = new CommentPostModel();
+                cpm.Post = _blogRepository.Post(year, month, title);
+                cpm.Comment = new Comment() { PostId = cpm.Post.Id };
 
-            if (post == null)
+            if (cpm.Post == null)
                 throw new HttpException(404, "Post not found");
 
-            if (post.Published == false && User.Identity.IsAuthenticated == false)
+            if (cpm.Post.Published == false && User.Identity.IsAuthenticated == false)
                 throw new HttpException(401, "The post is not published");
 
-            return View(post);
+            return View(cpm);
         }
 
 
@@ -93,6 +95,26 @@ namespace NewBlog.WebUI.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [ChildActionOnly]
+        public ActionResult AddComment(int? postId)
+        {
+            return View(new Comment() { PostId = (int)postId });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddComment([Bind(Include = "CommentId,PostId,UserId,CommentedOn,Description")] Comment comment)
+        {
+            comment.CommentedOn = DateTime.Now;
+            comment.User = _blogRepository.Users().First(x => x.Username == User.Identity.Name);
+            if (ModelState.IsValid)
+            {
+                _blogRepository.SaveComment(comment);
+                return RedirectToAction("Post", new { id = comment.PostId });
+            }
+            return RedirectToAction("Post", new { id = comment.PostId });
         }
 
     }
