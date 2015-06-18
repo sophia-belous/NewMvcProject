@@ -1,45 +1,24 @@
 ﻿@model IEnumerable<NewBlog.Domain.Entities.Comment>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Post.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CommentedOn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
-
+    <div class="row">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Post.Title)
+        <div class="comment-date">
+           @Html.Raw(item.CommentedOn)
+        </div>
+        <div class="comment-user">
+            @Html.Raw(item.User.Username)
+        </div>
+        <div class="comment-body">
+            @Html.Raw(item.Description)
+        </div>
+        <br />
+        @* <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.CommentId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.CommentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.CommentId })
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Username)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CommentedOn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            @* <td>
-                    @Html.ActionLink("Edit", "Edit", new { id=item.CommentId }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.CommentId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id=item.CommentId })
-                </td>
-            *@
-        </tr>
+        *@
     }
-
-</table>
+    </div>
 
