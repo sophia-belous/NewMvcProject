@@ -26,30 +26,39 @@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
+            <!--/.navbar-collapse -->
         </div>
     </div>
     <div class="container">
         <div class="row">
+
+            <!--/span-->
             <div class="col-md-9">
                 @RenderBody()
             </div>
+            <!--/span-->
             <div class="col-md-3">
-                <div class="sidebar-nav-fixed pull-right affix center-block">
+                <div class="sidebar-nav-fixed pull-right affix">
+                    @Html.Partial("_Search")
                     <div class="well">
-                        @Html.Partial("_Search")
-                    </div>
-                    <div class="sidebar-nav-fixed pull-right affix">
-                        <div class="well">
+                        <ul class="nav">
                             @Html.Action("Sidebars", "Blog")
-                        </div>
+                        </ul>
                     </div>
+                    <!--/.well -->
                 </div>
+                <!--/sidebar-nav-fixed -->
             </div>
+            <!--/span-->
         </div>
+        <!--/row-->
+
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>  
+        </footer>
     </div>
-    <footer class="col-lg-offset-1">
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
+    <!--/.fluid-container-->
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

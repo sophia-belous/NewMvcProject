@@ -1,9 +1,15 @@
 ﻿@using NewBlog.WebUI.Models
 @model WidgetViewModel
 
-<div id="sidebars">
+<ul class="nav text-center">
     @Html.Partial("_Categories", Model.Categories)
+</ul>
+<br />
+<ul class="nav text-center">
     @Html.Partial("_Tags", Model.Tags)
+</ul>
+<br />
+<ul class="nav text-center">
     @Html.Partial("_LatestPosts", Model.LatestPosts)
-</div>
+</ul>
 

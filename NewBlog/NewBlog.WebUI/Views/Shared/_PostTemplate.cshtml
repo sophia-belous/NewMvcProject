@@ -1,7 +1,7 @@
 ﻿@using NewBlog.Domain.Entities;
 @model Post
 
-<div class="post">
+<div class="jumbotron">
     <div class="post-meta">
         <div class="row">
 
@@ -32,7 +32,7 @@
                 bool isLiked = Model.Likes.Any(l => l.User.Username == User.Identity.Name);
                 string style = @isLiked ? "glyphicon glyphicon-heart" : "glyphicon glyphicon-heart-empty";
             }
-            <input id="like_@Model.Id"type="checkbox" checked="@isLiked" class="@style" onchange="SendLike(@Model.Id, this.checked)">
+            <input id="like_@Model.Id" type="checkbox" checked="@isLiked" class="@style" onchange="SendLike(@Model.Id, this.checked)">
             <span>@Model.Likes.Count</span>
         </div>
 
@@ -43,14 +43,13 @@
         @Html.Raw(Model.ShortDescription)
     </div>
 
-    <div class="post-foot">
+    <div class="btn btn-primary btn-sm pull-right">
         @Html.ActionLink("Continue", "Post", "Blog",
         new
         {
             id = Model.Id,
         },
-        new { title = "Continue" }
-    )
+        new { title = "Continue", style="color: white" })
     </div>
 </div>
 <style>

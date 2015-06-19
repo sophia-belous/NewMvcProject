@@ -1,14 +1,16 @@
-﻿@using (Html.BeginForm(
-    "Search", 
-    "Blog",   
+﻿
+@using (Html.BeginForm(
+    "Search",
+    "Blog",
     FormMethod.Get,
     new { id = "form-search" }))
 {
     <p>
-        @Html.TextBox("s")
+        @Html.TextBox("s", "", new { @class = "form-control" })
     </p>
     <p>
-        <input type="submit" class="btn btn-primary" value="Search">
+        <input type="submit" class="btn btn-default center-block" value="Search">
     </p>
 }
+
 

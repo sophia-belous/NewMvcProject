@@ -1,19 +1,17 @@
 ﻿@using NewBlog.Domain.Entities 
 @model IList<Tag>
 
-<div class="tags sidebar">
-    <h3>Tags</h3>
+<li class="nav-header">Tags</li>
 
     @if (Model.Count > 0)
     {
         foreach (var tag in Model)
         {
-            @Html.TagLink(tag) @:
+            <span class="small">@Html.TagLink(tag)</span>
         }
     }
     else
     {
         <p>No tags found!</p>
     }
-</div>
 

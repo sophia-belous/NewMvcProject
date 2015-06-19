@@ -1,21 +1,16 @@
 ﻿@using NewBlog.Domain.Entities
 @model IList<Post>
-
-    <div class="sidebar">
-        <h3>Latest Posts</h3>
+<li class="nav-header">Latest Posts</li>
 
         @if (Model.Count > 0)
         {
-            <ul>
-                @foreach (var post in Model)
-                {
-                    <li>@Html.PostLink(post)</li>
-                }
-            </ul>
+            foreach (var post in Model)
+            {
+                <li class="small">@Html.PostLink(post)</li>
+            }
         }
         else
         {
             <p>No posts found!</p>
         }
-    </div>
 

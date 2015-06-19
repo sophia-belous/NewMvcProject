@@ -525,6 +525,8 @@
     <Content Include="Views\Shared\_Comments.cshtml" />
     <Content Include="Views\Blog\AddComment.cshtml" />
     <Content Include="Views\Shared\_Like.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Test.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

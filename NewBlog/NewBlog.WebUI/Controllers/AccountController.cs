@@ -24,7 +24,7 @@ namespace NewBlog.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (WebSecurity.Login(loginData.Username, loginData.Password))
+                if (WebSecurity.Login(loginData.Username, loginData.Password, loginData.RememberMe))
                 {
                     if (returnUrl != null)
                     {
@@ -53,18 +53,37 @@ namespace NewBlog.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Register registerData)
         {
+            bool createdUser = false;
+            string errMessage = string.Empty;
+
             if (ModelState.IsValid)
             {
                 try
                 {
                     WebSecurity.CreateUserAndAccount(registerData.Username, registerData.Password);
                     Roles.AddUserToRole(registerData.Username, "user");
+                    createdUser = true;
                     return RedirectToAction("Posts", "Blog");
+                    
                 }
                 catch (MembershipCreateUserException exception)
                 {
                     ModelState.AddModelError("", "Sorry, the username is already exists");
+                    createdUser = false;
                     return View(registerData);
+                }
+
+                if (createdUser)
+                {
+                    if (WebSecurity.Login(registerData.Username, registerData.Password))
+                        return RedirectToAction("Posts", "Blog");
+                    else
+                        ModelState.AddModelError("", "Error logging user in with that username/password.");
+
+                }
+                else
+                {
+                    ModelState.AddModelError("", errMessage);
                 }
             }
 
