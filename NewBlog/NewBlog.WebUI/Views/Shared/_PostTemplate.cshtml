@@ -28,7 +28,12 @@
             <div class="posted-date">
                 @Model.PostedOn.ToConfigLocalTime()
             </div>
-
+            @{
+                bool isLiked = Model.Likes.Any(l => l.User.Username == User.Identity.Name);
+                string style = @isLiked ? "glyphicon glyphicon-heart" : "glyphicon glyphicon-heart-empty";
+            }
+            <input id="like_@Model.Id"type="checkbox" checked="@isLiked" class="@style" onchange="SendLike(@Model.Id, this.checked)">
+            <span>@Model.Likes.Count</span>
         </div>
 
     </div>
@@ -48,3 +53,34 @@
     )
     </div>
 </div>
+<style>
+    .glyphicon:before {
+ visibility: visible;
+}
+
+input[type=checkbox].glyphicon{
+    visibility: hidden;    
+}
+</style>
+<script type="text/javascript">
+    function SendLike(postId, state, likesCount) {
+        $.ajax({
+            type: "POST",
+            url: "/AddLike",
+            dataType: 'json',
+            data: {
+                postId: postId,
+                state: state
+            },
+            success: function () {
+                $('#like_' + postId).toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart-empty');
+                var likesCount = parseInt($('#like_' + postId).next().text(), 10);
+
+                $('#like_' + postId).next().text(state ? (likesCount + 1) : (likesCount - 1));
+
+            }
+        });
+
+    }
+</script>
+

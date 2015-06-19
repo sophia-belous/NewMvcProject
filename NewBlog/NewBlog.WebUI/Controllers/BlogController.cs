@@ -117,5 +117,20 @@ namespace NewBlog.WebUI.Controllers
             return RedirectToAction("Post", new { id = comment.PostId });
         }
 
+        [HttpPost]
+        public ActionResult AddLike(int postId, bool state)
+        {
+            if (state)
+            {
+                _blogRepository.AddLike(postId, User.Identity.Name);
+            }
+            else
+            {
+                _blogRepository.RemoveLike(postId, User.Identity.Name);
+            }
+
+            return Json(new { success = true, responseText = "Like successfully added." }, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

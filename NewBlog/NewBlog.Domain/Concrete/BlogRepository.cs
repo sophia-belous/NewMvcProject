@@ -247,5 +247,23 @@ namespace NewBlog.Domain.Concrete
 
             _blogContext.SaveChanges();
         }
+
+
+        public void AddLike(int postId, string username)
+        {
+            var user = _blogContext.Users.First(u => u.Username == username);
+            user.Likes.Add(new Like
+            {
+                PostId = postId
+            });
+            _blogContext.SaveChanges();
+        }
+
+        public void RemoveLike(int postId, string username)
+        {
+            var like = _blogContext.Likes.Include("User").First(l => (l.PostId == postId && l.User.Username == username));
+            _blogContext.Likes.Remove(like);
+            _blogContext.SaveChanges();
+        }
     }
 }

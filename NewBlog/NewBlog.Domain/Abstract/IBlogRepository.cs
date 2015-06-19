@@ -39,6 +39,9 @@ namespace NewBlog.Domain.Abstract
         IList<Comment> Comments();
         void SaveComment(Comment comment);
 
+        void AddLike(int postId, string username);
+        void RemoveLike(int postId, string username);
+
 
 
 
