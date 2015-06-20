@@ -5,10 +5,10 @@
 
     @if (Model.Count > 0)
     {
-            foreach (var category in Model)
-            {
-                <li class="small">@Html.CategoryLink(category)</li>
-            }
+        foreach (var category in Model)
+        {
+            <li class="small">@Html.CategoryLink(category)</li>
+        }
     }
     else
     {

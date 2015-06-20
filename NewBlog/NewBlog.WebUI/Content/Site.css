@@ -1,6 +1,6 @@
 ﻿body {
     padding-top: 60px;
-    padding-bottom: 40px;
+    padding-bottom: 40px;  
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -25,3 +25,27 @@ textarea {
 .sidebar-nav-fixed {
 	width:20%;
 }
+
+@media (min-width: 979px) {
+
+  #midCol.affix-top {
+      position:fixed;
+  	  width:265px;
+  	  
+  }
+  
+  #midCol.affix {
+      position:static;
+      width:265px;
+  }
+
+}
+
+@media (min-width: 767px) {
+  .affix,.affix-top {
+      position:fixed;
+  }
+}
+
+
+

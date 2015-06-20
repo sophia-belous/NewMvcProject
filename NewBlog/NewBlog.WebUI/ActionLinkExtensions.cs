@@ -35,9 +35,10 @@ namespace NewBlog.WebUI
      
         public static MvcHtmlString TagLink(this HtmlHelper helper, Tag tag)
         {
-            return helper.ActionLink(tag.Name, "Tag", "Blog", new { tag = tag.UrlSlug }, 
-                new { 
-                    title = String.Format("See all posts in {0}", tag.Name) 
+            return helper.ActionLink(tag.Name, "Tag", "Blog", new { tag = tag.UrlSlug},
+                new
+                {
+                    title = String.Format("See all posts in {0}", tag.Name)
                 });
         }
 

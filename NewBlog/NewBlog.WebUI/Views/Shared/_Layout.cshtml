@@ -6,6 +6,7 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="navbar navbar-fixed-top navbar-default">
@@ -20,9 +21,9 @@
             </div>
             <div class="navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Posts", "Posts")</li>
-                    <li>@Html.ActionLink("About", "About")</li>
-                    <li>@Html.ActionLink("Contact", "Contact")</li>
+                    <li>@Html.ActionLink("Posts", "Posts", "Blog")</li>
+                    <li>@Html.ActionLink("About", "About", "Blog")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Blog")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,15 +35,15 @@
                 @RenderBody()
             </div>
             <div class="col-md-3">
-                <div class="sidebar-nav-fixed pull-right affix center-block">
+                <div id="midCol" class="sidebar-nav pull-right center-block" data-spy="affix" data-offset-top="300">
                     <div class="well">
                         @Html.Partial("_Search")
                     </div>
-                    <div class="sidebar-nav-fixed pull-right affix">
+                   
                         <div class="well">
                             @Html.Action("Sidebars", "Blog")
                         </div>
-                    </div>
+
                 </div>
             </div>
         </div>

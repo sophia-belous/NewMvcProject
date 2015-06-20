@@ -13,53 +13,49 @@
         </div>
 
         <div class="row">
-
-            <!--Category-->
             <div class="post-category">
-                <span>Category: </span>@Html.CategoryLink(Model.Category)
+                <span class="glyphicon glyphicon-bookmark">Category:</span>@Html.CategoryLink(Model.Category)
             </div>
-
-            <!--Tags-->
             <div class="post-tags">
-                <span>Tags:</span>@Helpers.Tags(Html, Model.Tags)
+                <i class="glyphicon glyphicon-tag">Tags:</i>@Helpers.Tags(Html, Model.Tags) 
             </div>
-
-            <!--Posted date-->
-            <div class="posted-date">
-                @Model.PostedOn.ToConfigLocalTime()
-            </div>
-            @{
-                bool isLiked = Model.Likes.Any(l => l.User.Username == User.Identity.Name);
-                string style = @isLiked ? "glyphicon glyphicon-heart" : "glyphicon glyphicon-heart-empty";
-            }
-            <input id="like_@Model.Id" type="checkbox" checked="@isLiked" class="@style" onchange="SendLike(@Model.Id, this.checked)">
-            <span>@Model.Likes.Count</span>
         </div>
-
     </div>
-
+    <br />
     <!--Short Description-->
     <div class="post-body">
-        @Html.Raw(Model.ShortDescription)
+        <p>@Html.Raw(Model.ShortDescription)</p> 
     </div>
+    <div>
+        <span class="badge">Posted @Model.PostedOn.ToConfigLocalTime()</span>
 
-    <div class="btn btn-primary btn-sm pull-right">
-        @Html.ActionLink("Continue", "Post", "Blog",
+        @{
+            bool isLiked = Model.Likes.Any(l => l.User.Username == User.Identity.Name);
+            string style = @isLiked ? "glyphicon glyphicon-heart" : "glyphicon glyphicon-heart-empty";
+        }
+        <input id="like_@Model.Id" type="checkbox" checked="@isLiked" class="@style" onchange="SendLike(@Model.Id, this.checked)">
+        <span>@Model.Likes.Count</span>
+        <div class="btn btn-primary btn-sm pull-right">
+
+            @Html.ActionLink("Read More", "Post", "Blog",
         new
         {
-            id = Model.Id,
+            id = Model.Id
         },
-        new { title = "Continue", style="color: white" })
+        new { title = "Read More", style = "color: white" })
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </div>
     </div>
+   
 </div>
 <style>
     .glyphicon:before {
- visibility: visible;
-}
+        visibility: visible;
+    }
 
-input[type=checkbox].glyphicon{
-    visibility: hidden;    
-}
+    input[type=checkbox].glyphicon {
+        visibility: hidden;
+    }
 </style>
 <script type="text/javascript">
     function SendLike(postId, state, likesCount) {

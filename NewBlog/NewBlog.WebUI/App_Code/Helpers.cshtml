@@ -3,9 +3,7 @@
 {
     foreach (var tag in tags)
     {
-        <div class="tags-div">
-            @NewBlog.WebUI.ActionLinkExtensions.TagLink(htmlHelper, tag)
-        </div>
+            <span class="label">@NewBlog.WebUI.ActionLinkExtensions.TagLink(htmlHelper, tag)</span>
     }
 }
 
