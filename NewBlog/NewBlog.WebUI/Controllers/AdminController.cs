@@ -85,11 +85,15 @@ namespace NewBlog.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(EditViewModel evm)
+        public ActionResult Edit(EditViewModel evm, HttpPostedFileBase file)
         {
 
-            if (ModelState.IsValid)
+                if (ModelState.IsValid)
             {
+                string path = Server.MapPath("~/Content/Uploads/" + file.FileName);
+                file.SaveAs(path);
+                evm.Post.ImgUrl = "~/Content/Uploads/" + file.FileName;
+
                 List<Tag> tags = new List<Tag>();
                 IList<Tag> allTags = _blogRepository.Tags();
                 for (int i = 0; i < evm.TagIndexes.Length; i++)
@@ -108,7 +112,7 @@ namespace NewBlog.WebUI.Controllers
             }
         }
 
-        [HttpPost] // бля, ну так стоп))) так тут же post
+        [HttpPost]
         public ActionResult Delete(int id)
         {
             Post deletedPost = _blogRepository.DeletePost(id);

@@ -42,5 +42,12 @@ namespace NewBlog.WebUI
                 });
         }
 
+        public static IHtmlString Image(this HtmlHelper helper, string src)
+        {
+            TagBuilder tb = new TagBuilder("img");
+            tb.Attributes.Add("src", VirtualPathUtility.ToAbsolute(src));
+            return new MvcHtmlString(tb.ToString(TagRenderMode.SelfClosing));
+        }
+
     }
 }

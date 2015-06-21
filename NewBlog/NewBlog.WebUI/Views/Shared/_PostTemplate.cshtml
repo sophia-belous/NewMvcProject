@@ -1,4 +1,5 @@
-﻿@using NewBlog.Domain.Entities;
+﻿
+@using NewBlog.Domain.Entities;
 @model Post
 
 <div class="jumbotron">
@@ -22,7 +23,9 @@
         </div>
     </div>
     <br />
-    <!--Short Description-->
+    <div class="post-foto">
+        @Html.Image(Model.ImgUrl)
+    </div>
     <div class="post-body">
         <p>@Html.Raw(Model.ShortDescription)</p> 
     </div>
@@ -32,8 +35,10 @@
         @{
             bool isLiked = Model.Likes.Any(l => l.User.Username == User.Identity.Name);
             string style = @isLiked ? "glyphicon glyphicon-heart" : "glyphicon glyphicon-heart-empty";
+            bool isLogged = !string.IsNullOrEmpty(User.Identity.Name);
+
         }
-        <input id="like_@Model.Id" type="checkbox" checked="@isLiked" class="@style" onchange="SendLike(@Model.Id, this.checked)">
+        <input id="like_@Model.Id" type="checkbox" checked="@isLiked" class="@style" onchange="SendLike(@Model.Id, this.checked, @isLogged)">
         <span>@Model.Likes.Count</span>
         <div class="btn btn-primary btn-sm pull-right">
 
@@ -58,24 +63,25 @@
     }
 </style>
 <script type="text/javascript">
-    function SendLike(postId, state, likesCount) {
-        $.ajax({
-            type: "POST",
-            url: "/AddLike",
-            dataType: 'json',
-            data: {
-                postId: postId,
-                state: state
-            },
-            success: function () {
-                $('#like_' + postId).toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart-empty');
-                var likesCount = parseInt($('#like_' + postId).next().text(), 10);
+    function SendLike(postId, state, isLogged) {
+        if (isLogged) {
+            $.ajax({
+                type: "POST",
+                url: "/AddLike",
+                dataType: 'json',
+                data: {
+                    postId: postId,
+                    state: state
+                },
+                success: function () {
+                    $('#like_' + postId).toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart-empty');
+                    var likesCount = parseInt($('#like_' + postId).next().text(), 10);
 
-                $('#like_' + postId).next().text(state ? (likesCount + 1) : (likesCount - 1));
+                    $('#like_' + postId).next().text(state ? (likesCount + 1) : (likesCount - 1));
 
-            }
-        });
-
+                }
+            });
+        }          
     }
 </script>
 

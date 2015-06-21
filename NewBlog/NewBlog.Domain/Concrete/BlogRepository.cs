@@ -202,6 +202,7 @@ namespace NewBlog.Domain.Concrete
                     postFind.ShortDescription = post.ShortDescription;
                     postFind.Description = post.Description;
                     postFind.Category = post.Category;
+                    postFind.ImgUrl = post.ImgUrl;
                     postFind.Modified = DateTime.Now;
                     postFind.Published = post.Published;
                     postFind.Tags = post.Tags.ToList();
