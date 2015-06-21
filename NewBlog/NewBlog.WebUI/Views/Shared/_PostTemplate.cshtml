@@ -1,5 +1,4 @@
-﻿
-@using NewBlog.Domain.Entities;
+﻿@using NewBlog.Domain.Entities;
 @model Post
 
 <div class="jumbotron">
@@ -18,7 +17,7 @@
                 <span class="glyphicon glyphicon-bookmark">Category:</span>@Html.CategoryLink(Model.Category)
             </div>
             <div class="post-tags">
-                <i class="glyphicon glyphicon-tag">Tags:</i>@Helpers.Tags(Html, Model.Tags) 
+                @Helpers.Tags(Html, Model.Tags)
             </div>
         </div>
     </div>
@@ -27,7 +26,7 @@
         @Html.Image(Model.ImgUrl)
     </div>
     <div class="post-body">
-        <p>@Html.Raw(Model.ShortDescription)</p> 
+        <p>@Html.Raw(Model.ShortDescription)</p>
     </div>
     <div>
         <span class="badge">Posted @Model.PostedOn.ToConfigLocalTime()</span>
@@ -51,37 +50,36 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </div>
     </div>
-   
 </div>
-<style>
-    .glyphicon:before {
-        visibility: visible;
-    }
+        <style>
+            .glyphicon:before {
+                visibility: visible;
+            }
 
-    input[type=checkbox].glyphicon {
-        visibility: hidden;
-    }
-</style>
-<script type="text/javascript">
-    function SendLike(postId, state, isLogged) {
-        if (isLogged) {
-            $.ajax({
-                type: "POST",
-                url: "/AddLike",
-                dataType: 'json',
-                data: {
-                    postId: postId,
-                    state: state
-                },
-                success: function () {
-                    $('#like_' + postId).toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart-empty');
-                    var likesCount = parseInt($('#like_' + postId).next().text(), 10);
+            input[type=checkbox].glyphicon {
+                visibility: hidden;
+            }
+        </style>
+        <script type="text/javascript">
+            function SendLike(postId, state, isLogged) {
+                if (isLogged) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/AddLike",
+                        dataType: 'json',
+                        data: {
+                            postId: postId,
+                            state: state
+                        },
+                        success: function () {
+                            $('#like_' + postId).toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart-empty');
+                            var likesCount = parseInt($('#like_' + postId).next().text(), 10);
 
-                    $('#like_' + postId).next().text(state ? (likesCount + 1) : (likesCount - 1));
+                            $('#like_' + postId).next().text(state ? (likesCount + 1) : (likesCount - 1));
 
+                        }
+                    });
                 }
-            });
-        }          
-    }
-</script>
+            }
+        </script>
 
