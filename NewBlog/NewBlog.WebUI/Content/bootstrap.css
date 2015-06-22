@@ -4527,18 +4527,18 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-toggle {
-  border-color: #333;
+  border-color: rgba(255, 157, 107, 0.56);
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
-  background-color: #333;
+  background-color: rgba(255, 157, 107, 0.56);
 }
 .navbar-inverse .navbar-toggle .icon-bar {
   background-color: #fff;
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
-  border-color: #101010;
+  border-color: rgba(226, 77, 0, 1);
 }
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
@@ -6336,7 +6336,7 @@ button.close {
 .pager:after,
 .panel-body:after,
 .modal-footer:after {
-  clear: both;
+  clear: right;
 }
 .center-block {
   display: block;

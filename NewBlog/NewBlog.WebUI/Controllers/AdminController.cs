@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebMatrix.WebData;
 
 namespace NewBlog.WebUI.Controllers
 {
@@ -123,5 +124,12 @@ namespace NewBlog.WebUI.Controllers
             }
             return RedirectToAction("List");
         }
+
+        public ActionResult Logout()
+        {
+            WebSecurity.Logout();
+            return RedirectToAction("Posts", "Blog");
+        }
+
     }
 }

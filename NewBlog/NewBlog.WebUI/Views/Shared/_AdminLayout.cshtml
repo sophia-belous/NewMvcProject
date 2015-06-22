@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href="~/Content/AdminStyle.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <span class="fa fa-bars" data-info="Menu"></span>
+
+            <div class="menu">
+                <ul>
+                    <li>@Html.ActionLink("W", "List", "Admin", new { @class = "logo" })</li>
+                    <li>@Html.ActionLink("Site", "Posts", "Blog")</li>
+                    <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="controls">
+            <span class="fa fa-plus more circle"></span>
+
+            <div class="more-options">
+                <span class="fa fa-edit circle tip" data-info="New Post"></span>
+                <span class="fa fa-area-chart circle tip" data-info="Analytics"></span>
+                <span class="fa fa-gears circle tip" data-info="Settings"></span>
+            </div>
+        </div>
+
+
+        <div class="content">
+            <div class="post">@RenderBody()</div>
+        </div>
+    </div>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+        <script src="~/Scripts/admin.js"></script>
+</body>
+</html>

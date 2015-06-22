@@ -146,17 +146,20 @@ TAGS
   background-image: -o-linear-gradient(#4682B4 0%, steelblue 100%);
   background-image: linear-gradient(#4682B4 0%, steelblue 100%);
   text-decoration: none;
-  padding: 5px;
+  padding: 3px;
   color: #FFF;
-  text-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px;
+  text-shadow: rgba(42, 97, 150, 0.55) 0px 1px 1px;
   border-top: 1px solid #80A8CA !important;
-  font: 12px source sans pro;
+  font: 11px sans-serif;
   font-weight: bold;
   position: relative;
-  padding-left: 20px;
-  border-radius: 5px;
+  padding-left: 18px;
+  border-top-left-radius:50px;
+  border-top-right-radius:15px;
+  border-bottom-left-radius:50px;
+  border-bottom-right-radius:15px; 
   margin: 0px 3px 3px 0px;
- /* float: left;*/
+  float: right;
   border: 1px solid #4682B4;
 }
 
@@ -172,7 +175,7 @@ TAGS
 .tags a:before {
   content: "";
   width: 100%;
-  height: 10px;
+  /*height: 10px;*/
   top: 0;
   left: 0;
   z-index: 0;
@@ -182,14 +185,14 @@ TAGS
 
 .tags a:after {
   content: "";
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   background: #F2F2F2;
   position: absolute;
   border-radius: 10px;
-  left: 6px;
-  top: 6px;
-  box-shadow: inset rgba(3, 32, 57, 0.95) 0px 0px 2px, rgba(232, 237, 242, 0.56) 0px 1px 2px;
+  left: 5px;
+  top: 5px;
+  box-shadow: inset rgba(10, 78, 134, 0.61) 0px 0px 2px, rgba(255, 255, 255, 1) 1px 1px 2px;
 }
 /*------------------------------------*/
 
@@ -198,7 +201,7 @@ TAGS
   border-bottom: 1px solid #DF4C00;
   box-shadow: 1px 0 2px rgba(0,0,0,.5);
   color: #FFF;
-  display: flex;
+  /*display: flex;*/
   justify-content: space-between;
   padding: 10px 10px;
   position: fixed;
@@ -336,4 +339,25 @@ TAGS
   color: #555;
   margin: 0 0 10px;
   padding: 0;
+}
+/*login*/
+.colorgraph {
+  height: 5px;
+  border-top: 0;
+  background: #c4e17f;
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+  background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
+}
+
+#logininput input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.like {
+    cursor: pointer;
 }
