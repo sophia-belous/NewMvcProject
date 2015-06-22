@@ -72,9 +72,9 @@ CLOUD WRAPPER
 }
 
 h1 {
-  font: 50px source sans pro;
+  font: bold 50px 'Open Sans', sans-serif;
   font-weight: bold;
-  color: rgba(0, 0, 0, 0.4);
+  color: steelblue;
   float: none;
   margin-bottom: 10px;
   text-shadow: #e1e0dc 0px 2px 2px;
@@ -139,34 +139,34 @@ h1 {
 TAGS
 ****************************/
 .tags a {
-  background: #FF681A;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FF681A), to(#FF5B06));
-  background-image: -webkit-linear-gradient(#FF681A 0%, #FF5B06 100%);
-  background-image: -moz-linear-gradient(#FF681A 0%, #FF5B06 100%);
-  background-image: -o-linear-gradient(#FF681A 0%, #FF5B06 100%);
-  background-image: linear-gradient(#FF681A 0%, #FF5B06 100%);
+  background: #4682B4;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4682B4), to(steelblue));
+  background-image: -webkit-linear-gradient(#4682B4 0%, steelblue 100%);
+  background-image: -moz-linear-gradient(#4682B4 0%, steelblue 100%);
+  background-image: -o-linear-gradient(#4682B4 0%, steelblue 100%);
+  background-image: linear-gradient(#4682B4 0%, steelblue 100%);
   text-decoration: none;
-  padding: 4px;
+  padding: 5px;
   color: #FFF;
   text-shadow: rgba(255, 255, 255, 0.6) 0px 1px 1px;
-  border-top: 1px solid #F88E57 !important;
-  font: 11px source sans pro;
+  border-top: 1px solid #80A8CA !important;
+  font: 12px source sans pro;
   font-weight: bold;
   position: relative;
   padding-left: 20px;
   border-radius: 5px;
   margin: 0px 3px 3px 0px;
  /* float: left;*/
-  border: 1px solid #F0B596;
+  border: 1px solid #4682B4;
 }
 
 .tags a:hover {
-  background: #FDB996;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FDB996), to(#FD742D));
-  background-image: -webkit-linear-gradient(#FDB996 0%, #FD742D 100%);
-  background-image: -moz-linear-gradient(#FDB996 0%, #FD742D 100%);
-  background-image: -o-linear-gradient(#FDB996 0%, #FD742D 100%);
-  background-image: linear-gradient(#FDB996 0%, #FD742D 100%);
+  background: #7DA7CA;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#7DA7CA), to(#4A88BE));
+  background-image: -webkit-linear-gradient(#7DA7CA 0%, #4A88BE 100%);
+  background-image: -moz-linear-gradient(#7DA7CA 0%, #4A88BE 100%);
+  background-image: -o-linear-gradient(#7DA7CA 0%, #4A88BE 100%);
+  background-image: linear-gradient(#7DA7CA 0%, #4A88BE 100%);
 }
 
 .tags a:before {
@@ -177,7 +177,7 @@ TAGS
   left: 0;
   z-index: 0;
   position: absolute;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(206, 222, 236, 0.17);
 }
 
 .tags a:after {
@@ -189,7 +189,7 @@ TAGS
   border-radius: 10px;
   left: 6px;
   top: 6px;
-  box-shadow: inset rgba(225, 85, 13, 1) 0px 0px 2px, rgba(255, 255, 255, 0.7) 0px 1px 2px;
+  box-shadow: inset rgba(3, 32, 57, 0.95) 0px 0px 2px, rgba(232, 237, 242, 0.56) 0px 1px 2px;
 }
 /*------------------------------------*/
 
@@ -308,4 +308,32 @@ TAGS
 
 .categories li:first-child:hover{
   border-bottom-left-radius: 0;
+}
+
+/*sidebar style*/
+.sidebar {
+  box-sizing: border-box;
+  margin: 50px auto;
+  padding: 20px 15px;
+  width: 200px;
+  height: auto;
+  background-color: white;
+  border-top: 10px solid rgb(255, 71, 6);
+  border-bottom: 40px solid slategray;
+  box-shadow:
+     10px 0px 15px -5px rgba(0, 0, 0, 0.15),
+    -10px 0px 15px -5px rgba(0, 0, 0, 0.15);
+}
+.sidebar h2 {
+  font: bold 28px/1.2 'Open Sans', sans-serif;
+  color: steelblue;
+  margin: 0 0 12px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid #FFC1B5;
+}
+.sidebar p {
+  font: 15px/1.4 'Open Sans', sans-serif;
+  color: #555;
+  margin: 0 0 10px;
+  padding: 0;
 }
