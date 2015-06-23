@@ -1,0 +1,47 @@
+﻿@model IEnumerable<NewBlog.Domain.Entities.Category>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@Html.Action("AddCategory", "Admin")
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UrlSlug)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>
+                    @Html.CategoryLink(category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => category.UrlSlug)
+                </td>
+                <td>
+                    @using (Html.BeginForm("DeleteCategory", "Admin"))
+                    {
+                        @Html.Hidden("id", category.CategoryId)
+                        <input type="submit" class="btn btn-danger btn-xs"
+                               onclick="return confirm('Are you sure you want to delete this Category?');"
+                               value="Delete" />
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <p>No categories found!</p>
+}
+

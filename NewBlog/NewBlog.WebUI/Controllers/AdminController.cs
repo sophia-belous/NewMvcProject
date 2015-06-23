@@ -125,9 +125,77 @@ namespace NewBlog.WebUI.Controllers
             return RedirectToAction("List");
         }
 
-        public ActionResult AddTags()
+        public ActionResult Categories()
         {
+            return View(_blogRepository.Categories());
+        }
 
+        public ActionResult Tags()
+        {
+            return View(_blogRepository.Tags());
+        }
+
+
+        [ChildActionOnly]
+        public ActionResult AddCategory()
+        {
+            return View(new Category());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddCategory([Bind(Include = "CategoryId, Name")]Category category)
+        {
+            if (ModelState.IsValid)
+            {
+               _blogRepository.SaveCategory(category);
+                return RedirectToAction("Categories");
+            }
+            return RedirectToAction("Categories");
+            
+        }
+
+        [ChildActionOnly]
+        public ActionResult AddTag()
+        {
+            return View(new Tag());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTag([Bind(Include = "TagId, Name")]Tag tag)
+        {
+            if (ModelState.IsValid)
+            {
+                _blogRepository.SaveTag(tag);
+                return RedirectToAction("Tags");
+            }
+            return RedirectToAction("Tags");
+
+        }
+
+        [HttpPost]
+        public ActionResult DeleteCategory(int id)
+        {
+            Category deletedCategory = _blogRepository.DeleteCategory(id);
+            if (deletedCategory != null)
+            {
+                TempData["message"] = string.Format("Category \"{0}\" was deleted",
+                    deletedCategory.Name);
+            }
+            return RedirectToAction("Categories");
+        }
+
+        [HttpPost]
+        public ActionResult DeleteTag(int id)
+        {
+            Tag deletedTag = _blogRepository.DeleteTag(id);
+            if (deletedTag != null)
+            {
+                TempData["message"] = string.Format("Tag \"{0}\" was deleted",
+                    deletedTag.Name);
+            }
+            return RedirectToAction("Tags");
         }
 
         public ActionResult Logout()
@@ -136,5 +204,10 @@ namespace NewBlog.WebUI.Controllers
             return RedirectToAction("Posts", "Blog");
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            _blogRepository.Dispose();
+            base.Dispose(disposing);
+        }
     }
 }

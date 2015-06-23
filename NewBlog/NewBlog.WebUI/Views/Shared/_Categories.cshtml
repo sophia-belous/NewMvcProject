@@ -3,15 +3,14 @@
 
 <li class="nav-header"><h2>Categories</h2></li>
 
-    @if (Model.Count > 0)
+@if (Model.Count > 0)
+{
+    foreach (var category in Model)
     {
-        foreach (var category in Model)
-        {
-            <li class="small">@Html.CategoryLink(category)</li>
-        }
+        <li class="small">@Html.CategoryLink(category)</li>
     }
-    else
-    {
-        <p>No categories found!</p>
-    }
-
+}
+else
+{
+    <p>No categories found!</p>
+}

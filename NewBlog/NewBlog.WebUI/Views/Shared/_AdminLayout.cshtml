@@ -18,7 +18,7 @@
 
             <div class="menu">
                 <ul>
-                    <li>@Html.ActionLink("A", "List", "Admin", new { @class = "logo" })</li>
+                    <li>@Html.ActionLink("A", "List", null, new { @class = "logo" })</li>
                     <li>@Html.ActionLink("Site", "Posts", "Blog")</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                 </ul>
@@ -29,9 +29,9 @@
             <span class="fa fa-plus more circle"></span>
 
             <div class="more-options">                
-                @Html.ActionLink(" ", "Create", "Admin", new { @class = "fa fa-edit circle tip", data_info = "New Post" })
-                <span class="fa fa-tags circle tip" data-info="New Tags"></span>
-                <span class="fa fa-paperclip circle tip" data-info="New Category"></span>
+                @Html.ActionLink(" ", "Create", null, new { @class = "fa fa-edit circle tip", data_info = "New Post" })
+                @Html.ActionLink(" ", "Tags", null, new { @class = "fa fa-tags circle tip", data_info = "New Tag" })
+                @Html.ActionLink(" ", "Categories", null, new { @class = "fa fa-paperclip circle tip", data_info = "New Category" })
             </div>
         </div>
 

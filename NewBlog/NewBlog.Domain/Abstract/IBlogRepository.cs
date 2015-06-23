@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NewBlog.Domain.Abstract
 {
-    public interface IBlogRepository
+    public interface IBlogRepository : IDisposable
     {
         IList<UserProfile> Users();
         
@@ -41,6 +41,11 @@ namespace NewBlog.Domain.Abstract
 
         void AddLike(int postId, string username);
         void RemoveLike(int postId, string username);
+
+        void SaveCategory(Category category);
+        void SaveTag(Tag tag);
+        Category DeleteCategory(int id);
+        Tag DeleteTag(int id);
 
 
 

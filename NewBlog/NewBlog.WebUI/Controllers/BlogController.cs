@@ -132,5 +132,11 @@ namespace NewBlog.WebUI.Controllers
             return Json(new { success = true, responseText = "Like successfully added." }, JsonRequestBehavior.AllowGet);
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            _blogRepository.Dispose();
+            base.Dispose(disposing);
+        }
+
     }
 }

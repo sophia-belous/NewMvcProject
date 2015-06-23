@@ -266,5 +266,70 @@ namespace NewBlog.Domain.Concrete
             _blogContext.Likes.Remove(like);
             _blogContext.SaveChanges();
         }
+
+
+        public void SaveCategory(Category category)
+        {
+            _blogContext.Categories.Add(category);
+            Category findCategory = _blogContext.Categories.Find(category.CategoryId);
+            findCategory.UrlSlug = category.Name;
+            _blogContext.SaveChanges();
+            
+        }
+
+
+        public void SaveTag(Tag tag)
+        {
+            _blogContext.Tags.Add(tag);
+            Tag findTag = _blogContext.Tags.Find(tag.TagId);
+            findTag.UrlSlug = tag.Name;
+            _blogContext.SaveChanges();
+        }
+
+
+        public Category DeleteCategory(int id)
+        {
+            Category dbEntry = _blogContext.Categories.Find(id);
+            if (dbEntry != null)
+            {
+                _blogContext.Categories.Remove(dbEntry);
+                _blogContext.SaveChanges();                
+            }
+            return dbEntry;
+        }
+
+        public Tag DeleteTag(int id)
+        {
+            Tag dbEntry = _blogContext.Tags.Find(id);
+            if (dbEntry != null)
+            {
+                _blogContext.Tags.Remove(dbEntry);
+                _blogContext.SaveChanges();
+            }
+            return dbEntry;
+        }
+        
+        private bool disposed = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!this.disposed)
+            {
+                if (disposing)
+                {
+                    _blogContext.Dispose();
+
+                }
+            }
+            this.disposed = true;
+        }
+        
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+
+        }
+
     }
 }
