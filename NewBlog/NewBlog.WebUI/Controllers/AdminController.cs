@@ -125,6 +125,11 @@ namespace NewBlog.WebUI.Controllers
             return RedirectToAction("List");
         }
 
+        public ActionResult AddTags()
+        {
+
+        }
+
         public ActionResult Logout()
         {
             WebSecurity.Logout();

@@ -23,7 +23,7 @@
                     <div>
                         <span class="button-checkbox">
                             <button type="button" class="btn" data-color="info">Remember Me</button>
-                            @Html.EditorFor(m => m.RememberMe, new { name = "remember_me", id = "remember_me", @checked = "checked", @class = "hidden"})
+                            @Html.EditorFor(m => m.RememberMe, new { name = "remember_me", id = "remember_me", @checked = "checked"})
                         </span>
                     </div>
                     <hr class="colorgraph">
@@ -36,8 +36,13 @@
                         </div>
                     </div>
 
-</fieldset>
+            </fieldset>
             }
         </div>
     </div>
 </div>
+<style>
+    .check-box{
+        visibility:collapse;
+}
+</style>

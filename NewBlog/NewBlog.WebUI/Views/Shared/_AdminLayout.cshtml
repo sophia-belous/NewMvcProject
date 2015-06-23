@@ -18,7 +18,7 @@
 
             <div class="menu">
                 <ul>
-                    <li>@Html.ActionLink("W", "List", "Admin", new { @class = "logo" })</li>
+                    <li>@Html.ActionLink("A", "List", "Admin", new { @class = "logo" })</li>
                     <li>@Html.ActionLink("Site", "Posts", "Blog")</li>
                     <li>@Html.ActionLink("Logout", "Logout", "Account")</li>
                 </ul>
@@ -28,10 +28,10 @@
         <div class="controls">
             <span class="fa fa-plus more circle"></span>
 
-            <div class="more-options">
-                <span class="fa fa-edit circle tip" data-info="New Post"></span>
-                <span class="fa fa-area-chart circle tip" data-info="Analytics"></span>
-                <span class="fa fa-gears circle tip" data-info="Settings"></span>
+            <div class="more-options">                
+                @Html.ActionLink(" ", "Create", "Admin", new { @class = "fa fa-edit circle tip", data_info = "New Post" })
+                <span class="fa fa-tags circle tip" data-info="New Tags"></span>
+                <span class="fa fa-paperclip circle tip" data-info="New Category"></span>
             </div>
         </div>
 
