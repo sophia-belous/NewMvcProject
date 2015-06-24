@@ -12,6 +12,7 @@ namespace NewBlog.WebUI.Models
     {
         public Post Post { get; set; }
         public MultiSelectList Tags { get; set; }
+
         public int[] TagIndexes { get; set; }
     }
 }

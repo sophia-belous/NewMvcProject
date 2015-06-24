@@ -1,86 +1,68 @@
 ﻿@using NewBlog.Domain.Entities;
 @model Post
-
-<div class="jumbotron">
-    <div class="post-meta">
-        <div class="row">
-
-            <!--Heading-->
-            <div class="post-title">
-                <h2>@Html.PostLink(Model)</h2>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="post-category">
-                <span class="glyphicon glyphicon-bookmark">Category:</span>@Html.CategoryLink(Model.Category)
-            </div>
-            <div class="post-tags">
-                @Helpers.Tags(Html, Model.Tags)
-            </div>
-        </div>
+    <article class="card">
+    <header class="card__thumb">
+        <a href='@Url.Action("Post", "Blog", new { id = Model.Id})'>
+            <img src='@Url.Content(Model.ImgUrl)' />
+        </a>
+    </header>
+    @{
+        int month = Model.PostedOn.Month;
+        string monthWord = System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat.GetMonthName(month);
+    }
+    <div class="card__date">
+        <span class="card__date__day">@Model.PostedOn.Day</span>
+        <span class="card__date__month">@monthWord</span>
     </div>
-    <br />
-    <div class="post-foto">
-        @Html.Image(Model.ImgUrl)
+    <div class="card__body">
+        <div class="card__category">@Html.CategoryLink(Model.Category)</div>
+        <div class="card__title"><a href='@Url.Action("Post", "Blog", new { id = Model.Id})'>@Html.PostLink(Model)</a></div>
+        <div class="card__subtitle">@Helpers.Tags(Html, Model.Tags)</div>
+        <p class="card__description">@Html.Raw(Model.ShortDescription)</p>
     </div>
-    <div class="post-body">
-        <p>@Html.Raw(Model.ShortDescription)</p>
-    </div>
-    <div>
-        <span class="badge">Posted @Model.PostedOn.ToConfigLocalTime()</span>
+    @{
+        bool isLiked = Model.Likes.Any(l => l.User.Username == User.Identity.Name);
+        string style = @isLiked ? "glyphicon glyphicon-heart" : "glyphicon glyphicon-heart-empty";
+        bool isLogged = !string.IsNullOrEmpty(User.Identity.Name);
+    }
+    <footer class="card__footer">
+        <span>
+            <input id="like_@Model.Id" type="checkbox" checked="@isLiked" class="@style like" onchange="SendLike(@Model.Id, this.checked, @isLogged)">
+            <span id="likesCount">@Model.Likes.Count</span>
+        </span>
+        <span class="icon icon--comment">@Model.Comments.Count comments</span>
+    </footer>
+</article>
 
-        @{
-            bool isLiked = Model.Likes.Any(l => l.User.Username == User.Identity.Name);
-            string style = @isLiked ? "glyphicon glyphicon-heart" : "glyphicon glyphicon-heart-empty";
-            bool isLogged = !string.IsNullOrEmpty(User.Identity.Name);
 
-        }
-        <input id="like_@Model.Id" type="checkbox" checked="@isLiked" class="@style like" onchange="SendLike(@Model.Id, this.checked, @isLogged)">
-        <span>@Model.Likes.Count</span>
-        <span>@Model.Comments.Count</span>
-        <div class="btn btn-primary btn-sm pull-right">
 
-            @Html.ActionLink("Read More", "Post", "Blog",
-        new
-        {
-            id = Model.Id
-        },
-        new { title = "Read More", style = "color: white" })
-            <span class="glyphicon glyphicon-chevron-right"></span>
-        </div>
-    </div>
-</div>
-        <style>
-            .glyphicon:before {
-                visibility: visible;
-            }
+<style>
+    .glyphicon:before {
+        visibility: visible;
+    }
 
-            input[type=checkbox].glyphicon {
-                visibility: hidden;
-            }
-        </style>
-        <script type="text/javascript">
-            function SendLike(postId, state, isLogged) {
-                if (isLogged) {
-                    $.ajax({
-                        type: "POST",
-                        url: "/AddLike",
-                        dataType: 'json',
-                        data: {
-                            postId: postId,
-                            state: state
-                        },
-                        success: function () {
-                            $('#like_' + postId).toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart-empty');
-                            var likesCount = parseInt($('#like_' + postId).next().text(), 10);
+    input[type=checkbox].glyphicon {
+        visibility: hidden;
+    }
+</style>
+<script type="text/javascript">
+    function SendLike(postId, state, isLogged) {
+        if (isLogged) {
+            $.ajax({
+                type: "POST",
+                url: "/AddLike",
+                dataType: 'json',
+                data: {
+                    postId: postId,
+                    state: state
+                },
+                success: function (response) {
+                    $('#like_' + postId).toggleClass('glyphicon glyphicon-heart').toggleClass('glyphicon glyphicon-heart-empty');
 
-                            $('#like_' + postId).next().text(state ? (likesCount + 1) : (likesCount - 1));
+                    $('#like_' + postId).next('#likesCount').text(response.likesCount);
 
-                        }
-                    });
                 }
-            }
-        </script>
-
+            });
+        }
+    }
+</script>

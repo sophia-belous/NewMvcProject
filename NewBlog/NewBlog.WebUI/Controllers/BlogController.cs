@@ -129,7 +129,7 @@ namespace NewBlog.WebUI.Controllers
                 _blogRepository.RemoveLike(postId, User.Identity.Name);
             }
 
-            return Json(new { success = true, responseText = "Like successfully added." }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, likesCount = _blogRepository.Post(postId).Likes.Count }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

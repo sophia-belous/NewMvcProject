@@ -12,13 +12,15 @@
     {
         foreach (var post in Model.Posts)
         {
-            @Html.Partial("_PostTemplate", post)
+            <div class="jumbotron">
+                @Html.Partial("_PostTemplate", post)
+            </div>
+
         }
     }
     else
     {
         <p>No posts found!</p>
     }
-
 </div>
 
