@@ -3,11 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title - My ASP.NET Application</title>   
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    @Styles.Render("~/Content/css")
 </head>
 <body>
     <div class="navbar navbar-fixed-top navbar-inverse header">
@@ -38,7 +38,7 @@
             <br />
             <div class="col-md-3">
                 <div id="midCol" class="sidebar-nav pull-right center-block" data-spy="affix" data-offset-top="300">
-                    <div class="well">
+                    <div class="well", style="background-color: #FFD300;">
                         @Html.Partial("_Search")
                     </div>
                    
