@@ -25,8 +25,12 @@
                     <li>@Html.ActionLink("Posts", "Posts", "Blog")</li>
                     <li>@Html.ActionLink("About", "About", "Blog")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Blog")</li>
+                    <li></li>
                 </ul>
+                
                 @Html.Partial("_LoginPartial")
+                @Html.Partial("_Search")
+
             </div>
         </div>
     </div>
@@ -38,10 +42,6 @@
             <br />
             <div class="col-md-3">
                 <div id="midCol" class="sidebar-nav pull-right center-block" data-spy="affix" data-offset-top="300">
-                    <div class="well", style="background-color: #FFD300;">
-                        @Html.Partial("_Search")
-                    </div>
-                   
                     <div class="sidebar raEqualHeight">
                         @Html.Action("Sidebars", "Blog")
                     </div>
@@ -49,10 +49,9 @@
             </div>
         </div>
     </div>
-    <footer>
-    </footer>
+    <footer></footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>
