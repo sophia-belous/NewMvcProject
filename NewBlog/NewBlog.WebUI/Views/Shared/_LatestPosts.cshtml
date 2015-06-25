@@ -6,7 +6,10 @@
         {
             foreach (var post in Model)
             {
-                <li>@Html.PostLink(post)</li>
+                <li style="box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16); 
+                    background-color: rgb(255, 193, 181);">
+                    @Html.PostLink(post)
+                </li>
             }
         }
         else

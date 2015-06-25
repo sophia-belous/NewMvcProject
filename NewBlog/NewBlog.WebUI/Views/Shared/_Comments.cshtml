@@ -1,24 +1,28 @@
 ﻿@model IEnumerable<NewBlog.Domain.Entities.Comment>
 
-    <div class="row">
-    @foreach (var item in Model)
-    {
-        <div class="comment-date">
-           @Html.Raw(item.CommentedOn)
-        </div>
-        <div class="comment-user">
-            @Html.Raw(item.User.Username)
-        </div>
-        <div class="comment-body">
-            @Html.Raw(item.Description)
-        </div>
-        <br />
-        @* <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.CommentId }) |
-                @Html.ActionLink("Details", "Details", new { id=item.CommentId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.CommentId })
-            </td>
-        *@
-    }
-    </div>
+<div class="comments-container">
+    <ul id="comments-list" class="comments-list">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="comment-main-level">
+                    <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
+                    <div class="comment-box">
+                        <div class="comment-head">
+                            <h6 class="comment-name by-author">@item.User.Username</h6>
+                            <span>@item.CommentedOn</span>
+                        </div>
+                        <div class="comment-content">
+                            @Html.Raw(item.Description)
+                        </div>
+                    </div>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+
+
+
 

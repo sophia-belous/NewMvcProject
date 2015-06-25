@@ -2,43 +2,44 @@
 
 @{
     ViewBag.Title = Model.Post.Title;
+    int month = Model.Post.PostedOn.Month;
+    string monthWord = System.Globalization.CultureInfo.CurrentUICulture.DateTimeFormat.GetMonthName(month);
 }
 
 <div id="content">
-    <div class="post">
+    <div class="wrapper">
+        <div class="ribbon ribbon-red">
+            <time class="iconPost">
+                <strong>@monthWord</strong>
+                <span>@Model.Post.PostedOn.Day</span>
+                <em>@Model.Post.PostedOn.DayOfWeek</em>
+            </time>
+            <div class="banner">
+                <div class="text">@Html.CategoryLink(Model.Post.Category)</div>
+            </div>
+        </div>
         <div class="post-meta">
             <div class="row">
-
                 <div class="post-title">
-                    <h1>@Html.PostLink(Model.Post)</h1>
+                    <center><h1 id="post-title">@Html.PostLink(Model.Post)</h1></center>
                 </div>
 
             </div>
             <div class="row">
-
-                <div class="post-category">
-                    <span>Category:</span> @Html.CategoryLink(Model.Post.Category)
+                <div class="post">
+                    @Helpers.Tags(Html, Model.Post.Tags)
                 </div>
-
-                <div class="post-tags">
-                    <span>Tags:</span> @Helpers.Tags(Html, Model.Post.Tags)
-                </div>
-
-                <div class="posted-date">
-                    @Model.Post.PostedOn.ToConfigLocalTime()
-                </div>
-
             </div>
         </div>
 
         <div class="post-body">
-            @Html.Raw(Model.Post.Description)
+            <br /><br />@Html.Raw(Model.Post.Description)
         </div>
-
+     </div>
         @Html.Action("AddComment", "Blog", new { postId = Model.Post.Id })
         @Html.Partial("_Comments", Model.Post.Comments)
 
-    </div>
+
 </div>
 
 @section Scripts
