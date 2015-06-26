@@ -3,56 +3,59 @@
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-    @if (Model.ToList().Count > 0)
-        {
-        <div class="table-responsive">
-            <table class="table table-striped table-condensed table-bordered">
+@if (Model.ToList().Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table-fill">
+            <thead>
                 <tr>
-                    <th>
+                    <th class="text-left">
                         @Html.DisplayNameFor(model => model.Title)
                     </th>
-                    <th>
+                    <th class="text-left">
                         @Html.DisplayNameFor(model => model.ShortDescription)
                     </th>
-                    <th>
+                    <th class="text-left">
                         @Html.DisplayNameFor(model => model.Category)
                     </th>
-                    <th>
+                    <th class="text-left">
                         @Html.DisplayNameFor(model => model.Tags)
                     </th>
-                    <th>
+                    <th class="text-left">
                         @Html.DisplayNameFor(model => model.PostedOn)
                     </th>
-                    <th>
+                    <th class="text-left">
                         @Html.DisplayNameFor(model => model.Modified)
                     </th>
-                    <th>
+                    <th class="text-left">
                         @Html.DisplayNameFor(model => model.Published)
                     </th>
                     <th></th>
                 </tr>
+            </thead>
+            <tbody class="table-hover">
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td class="text-left">
                             @Html.ActionLink(item.Title, "Edit", new { id = item.Id })
                         </td>
-                        <td>
+                        <td class="text-left">
                             @Html.Raw(item.ShortDescription)
                         </td>
-                        <td>
+                        <td class="text-left">
                             @Html.CategoryLink(item.Category)
                         </td>
-                        <td>
+                        <td class="text-left">
                             @Helpers.Tags(Html, item.Tags)
                         </td>
-                        <td>
+                        <td class="text-left">
                             @item.PostedOn.ToConfigLocalTime()
                         </td>
-                        <td>
+                        <td class="text-left">
                             @item.Modified
                         </td>
-                        <td>
+                        <td class="text-left">
                             @Html.DisplayFor(m => item.Published)
                         </td>
 
@@ -68,13 +71,14 @@
                                        value="Delete" />
                             }
                         </td>
+
                     </tr>
                 }
-            </table>
-        </div>        
-    }
-    else
-    {
-        <p>No posts found!</p>
-    }   
-
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>No posts found!</p>
+}
