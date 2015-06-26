@@ -32,13 +32,20 @@ namespace NewBlog.WebUI.Controllers
         {
             Tag tag = _blogRepository.GetFirstTag();
             List<Tag> tags = new List<Tag>() { tag };
-            Post post = new Post() { Tags = tags };
+
+            Category category = _blogRepository.GetFirstCategory();
+            List<Category> categories = new List<Category> { category};
+
+            Post post = new Post() { Tags = tags, Category = category};
             IList<Tag> allTags = _blogRepository.Tags();
+            IList<Category> allCategories = _blogRepository.Categories();
             int[] tagIndexes = post.Tags.Select(x => x.TagId).ToArray();
+            int[] categoryIndexes = new int[] { category.CategoryId };            
 
             EditViewModel evm = new EditViewModel();
             evm.Post = post;
             evm.Tags = new MultiSelectList(allTags, "TagId", "Name", tagIndexes);
+            evm.Categories = new MultiSelectList(allCategories, "CategoryId", "Name", categoryIndexes);
 
             return View(evm);
         }
@@ -54,7 +61,13 @@ namespace NewBlog.WebUI.Controllers
                 {
                     tags.Add(allTags.First(t => t.TagId == evm.TagIndexes[i]));
                 }
+
+                List<Category> categories = new List<Category>();
+                IList<Category> allCategories = _blogRepository.Categories();
+                categories.Add(allCategories.First(c => c.CategoryId == evm.CategoryIndexes[0]));
+
                 evm.Post.Tags = tags;
+                evm.Post.Category = categories.FirstOrDefault();
 
                 _blogRepository.SavePost(evm.Post);
                 TempData["message"] = string.Format(" Post \"{0}\" was created", evm.Post.Title);
@@ -75,12 +88,15 @@ namespace NewBlog.WebUI.Controllers
                 .FirstOrDefault(g => g.Id == id);
 
             IList<Tag> allTags = _blogRepository.Tags();
-
             int[] tagIndexes = post.Tags.Select(x => x.TagId).ToArray();
+
+            IList<Category> allCategories = _blogRepository.Categories();
+            int[] categoryIndexes = new int[] { post.Category.CategoryId };
 
             EditViewModel evm = new EditViewModel();
             evm.Post = post;
             evm.Tags = new MultiSelectList(allTags, "TagId", "Name", tagIndexes);
+            evm.Categories = new MultiSelectList(allCategories, "CategoryId", "Name", categoryIndexes);
 
             return View(evm);
         }
@@ -89,11 +105,20 @@ namespace NewBlog.WebUI.Controllers
         public ActionResult Edit(EditViewModel evm, HttpPostedFileBase file)
         {
 
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                string path = Server.MapPath("~/Content/Uploads/" + file.FileName);
-                file.SaveAs(path);
-                evm.Post.ImgUrl = "~/Content/Uploads/" + file.FileName;
+                if (evm.Post.ImgUrl == null)
+                {
+                    evm.Post.ImgUrl = _blogRepository.Post(evm.Post.Id).ImgUrl;                    
+                }
+                else
+                {
+                    string path = Server.MapPath("~/Content/Uploads/" + file.FileName);
+                                    file.SaveAs(path);
+                                    evm.Post.ImgUrl = "~/Content/Uploads/" + file.FileName;  
+                }
+                         
+                
 
                 List<Tag> tags = new List<Tag>();
                 IList<Tag> allTags = _blogRepository.Tags();
@@ -101,7 +126,13 @@ namespace NewBlog.WebUI.Controllers
                 {
                     tags.Add(allTags.First(t => t.TagId == evm.TagIndexes[i]));
                 }
+
+                List<Category> categories = new List<Category>();
+                IList<Category> allCategories = _blogRepository.Categories();
+                categories.Add(allCategories.First(c => c.CategoryId == evm.CategoryIndexes[0]));
+
                 evm.Post.Tags = tags;
+                evm.Post.Category = categories.FirstOrDefault();
 
                 _blogRepository.SavePost(evm.Post);
                 TempData["message"] = string.Format("Changes in Post \"{0}\" were saved", evm.Post.Title);

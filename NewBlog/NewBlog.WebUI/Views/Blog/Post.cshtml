@@ -31,9 +31,12 @@
                 </div>
             </div>
         </div>
-
-        <div class="post-body">
-            <br /><br />@Html.Raw(Model.Post.Description)
+        
+        <div class="post-body">            
+            @Html.Raw(Model.Post.Description)
+            <div class="vid">
+                <iframe width="560" height="315" src="@Url.Content(Model.Post.VdeoUrl)" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
      </div>
         @Html.Action("AddComment", "Blog", new { postId = Model.Post.Id })

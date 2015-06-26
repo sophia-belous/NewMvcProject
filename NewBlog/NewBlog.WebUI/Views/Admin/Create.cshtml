@@ -40,20 +40,11 @@
                 @Html.ValidationMessageFor(model => model.Post.Description, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.Post.UrlSlug, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Categories, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Post.UrlSlug, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Post.UrlSlug, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Post.Category.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Post.Category.Name, "", new { @class = "text-danger" })
+                @Html.ListBoxFor(model => model.CategoryIndexes, Model.Categories, new { size = Model.Categories.Count() })
+                @Html.ValidationMessageFor(model => model.Categories, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
@@ -61,6 +52,13 @@
             <div class="col-md-10">
                 @Html.ListBoxFor(model => model.TagIndexes, Model.Tags, new { size = Model.Tags.Count() })
                 @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.VdeoUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Post.VdeoUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Post.VdeoUrl, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -71,6 +69,12 @@
                     @Html.EditorFor(model => model.Post.Published)
                     @Html.ValidationMessageFor(model => model.Post.Published, "", new { @class = "text-danger" })
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Post.ImgUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="file" />
             </div>
         </div>
 

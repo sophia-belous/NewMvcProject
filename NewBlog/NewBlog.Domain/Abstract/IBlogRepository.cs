@@ -35,6 +35,7 @@ namespace NewBlog.Domain.Abstract
         void SavePost(Post post);
         Post DeletePost(int id);
         Tag GetFirstTag();
+        Category GetFirstCategory();
 
         IList<Comment> Comments();
         void SaveComment(Comment comment);

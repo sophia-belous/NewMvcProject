@@ -203,10 +203,11 @@ namespace NewBlog.Domain.Concrete
                     postFind.Description = post.Description;
                     postFind.Category = post.Category;
                     postFind.ImgUrl = post.ImgUrl;
+                    postFind.VdeoUrl = post.VdeoUrl;
                     postFind.Modified = DateTime.Now;
                     postFind.Published = post.Published;
                     postFind.Tags = post.Tags.ToList();
-                    postFind.UrlSlug = post.UrlSlug;
+                    postFind.UrlSlug = post.Title;
                 }
             }
 
@@ -216,6 +217,10 @@ namespace NewBlog.Domain.Concrete
         public Tag GetFirstTag()
         {
             return _blogContext.Tags.First();
+        }
+        public Category GetFirstCategory()
+        {
+            return _blogContext.Categories.First();
         }
 
 
@@ -330,6 +335,5 @@ namespace NewBlog.Domain.Concrete
             GC.SuppressFinalize(this);
 
         }
-
     }
 }
