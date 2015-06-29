@@ -534,14 +534,12 @@
     <Content Include="Views\Shared\_Comments.cshtml" />
     <Content Include="Views\Blog\AddComment.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Test.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Admin\AddCategory.cshtml" />
     <Content Include="Views\Admin\Categories.cshtml" />
     <Content Include="Views\Shared\_Categories.cshtml" />
     <Content Include="Views\Admin\Tags.cshtml" />
     <Content Include="Views\Admin\AddTag.cshtml" />
-    <Content Include="Views\Shared\_Testtest.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

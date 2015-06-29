@@ -190,6 +190,7 @@ namespace NewBlog.Domain.Concrete
             if (post.Id == 0)
             {
                 post.PostedOn = DateTime.Now;
+                post.UrlSlug = post.Title;
                 _blogContext.Posts.Add(post);                
             }
             else

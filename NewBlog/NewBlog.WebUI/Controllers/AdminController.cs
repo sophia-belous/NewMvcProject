@@ -62,12 +62,14 @@ namespace NewBlog.WebUI.Controllers
 
             if (ModelState.IsValid)
             {
-                if (evm.Post.ImgUrl != null)
+                if (file != null)
                 {
                     string path = Server.MapPath("~/Content/Uploads/" + file.FileName);
                     file.SaveAs(path);
                     evm.Post.ImgUrl = "~/Content/Uploads/" + file.FileName;
                 }
+                    
+
                 List<Tag> tags = new List<Tag>();
                 IList<Tag> allTags = _blogRepository.Tags();
                 for (int i = 0; i < evm.TagIndexes.Length; i++)
@@ -125,15 +127,26 @@ namespace NewBlog.WebUI.Controllers
             
             if (ModelState.IsValid)
             {
-                if (evm.Post.ImgUrl == null)
+
+                if (file == null && _blogRepository.Post(evm.Post.Id).ImgUrl != null)
                 {
                     evm.Post.ImgUrl = _blogRepository.Post(evm.Post.Id).ImgUrl;                    
                 }
-                else
+                else if (file != null)
                 {
+                    if (_blogRepository.Post(evm.Post.Id).ImgUrl != null)
+                    {
+                        string fullPath = Request.MapPath("~/Content/Uploads/" + _blogRepository.Post(evm.Post.Id).ImgUrl);
+
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            System.IO.File.Delete(fullPath);
+                        }
+                    }                    
+
                     string path = Server.MapPath("~/Content/Uploads/" + file.FileName);
                                     file.SaveAs(path);
-                                    evm.Post.ImgUrl = "~/Content/Uploads/" + file.FileName;  
+                    evm.Post.ImgUrl = "~/Content/Uploads/" + file.FileName;                                  
                 }               
 
                 List<Tag> tags = new List<Tag>();
@@ -195,7 +208,7 @@ namespace NewBlog.WebUI.Controllers
         [HttpPost]
         public ActionResult AddCategory([Bind(Include = "CategoryId, Name")]Category category)
         {
-            category.Name = Sanitizer.GetSafeHtml(category.Name);
+            category.Name = Sanitizer.GetSafeHtmlFragment(category.Name);
 
             if (ModelState.IsValid)
             {

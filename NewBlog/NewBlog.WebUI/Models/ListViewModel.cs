@@ -11,8 +11,13 @@ namespace NewBlog.WebUI.Models
     {
         public ListViewModel(IBlogRepository blogRepository, int p)
         {
-            Posts = blogRepository.Posts(p - 1, 10);
+            Posts = blogRepository.Posts(p - 1, 3);
             TotalPosts = blogRepository.TotalPosts();
+
+            foreach (var post in Posts.Where(m => m.ImgUrl == null))
+            {
+                post.ImgUrl = "~/Content/Uploads/default.jpg";
+            }            
         }
 
         public ListViewModel(IBlogRepository blogRepository,
@@ -21,21 +26,25 @@ namespace NewBlog.WebUI.Models
             switch (type)
             {
                 case "Category":
-                    Posts = blogRepository.PostsForCategory(text, p - 1, 10);
+                    Posts = blogRepository.PostsForCategory(text, p - 1, 3);
                     TotalPosts = blogRepository.TotalPostsForCategory(text);
                     Category = blogRepository.Category(text);
                     break;
                 case "Tag":
-                    Posts = blogRepository.PostsForTag(text, p - 1, 10);
+                    Posts = blogRepository.PostsForTag(text, p - 1, 3);
                     TotalPosts = blogRepository.TotalPostsForTag(text);
                     Tag = blogRepository.Tag(text);
+
                     break;
                 default:
-                    Posts = blogRepository.PostsForSearch(text, p - 1, 10);
+                    Posts = blogRepository.PostsForSearch(text, p - 1, 3);
                     TotalPosts = blogRepository.TotalPostsForSearch(text);
                     Search = text;
                     break;
-
+            }
+            foreach (var post in Posts.Where(m => m.ImgUrl == null))
+            {
+                post.ImgUrl = "~/Content/Uploads/default.jpg";
             }
         }
 
