@@ -1,4 +1,5 @@
-﻿using NewBlog.WebUI.Models;
+﻿using Microsoft.Security.Application;
+using NewBlog.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,11 @@ namespace NewBlog.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Login(Login loginData, string returnUrl)
         {
+            loginData.Username = Sanitizer.GetSafeHtmlFragment(loginData.Username);
+            loginData.Password = Sanitizer.GetSafeHtmlFragment(loginData.Password);
             if (ModelState.IsValid)
             {
                 if (WebSecurity.Login(loginData.Username, loginData.Password, loginData.RememberMe))
@@ -53,6 +57,8 @@ namespace NewBlog.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Register registerData)
         {
+            registerData.Username = Sanitizer.GetSafeHtmlFragment(registerData.Username);
+            registerData.Password = Sanitizer.GetSafeHtmlFragment(registerData.Password);
             bool createdUser = false;
             string errMessage = string.Empty;
 
@@ -73,17 +79,19 @@ namespace NewBlog.WebUI.Controllers
                     return View(registerData);
                 }
 
-                if (createdUser)
+                if(createdUser)
                 {
                     if (WebSecurity.Login(registerData.Username, registerData.Password))
                         return RedirectToAction("Posts", "Blog");
                     else
                         ModelState.AddModelError("", "Error logging user in with that username/password.");
+                    return View(registerData);
 
                 }
                 else
                 {
                     ModelState.AddModelError("", errMessage);
+                    return View(registerData);
                 }
             }
 

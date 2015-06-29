@@ -1,4 +1,5 @@
-﻿using NewBlog.Domain.Abstract;
+﻿using Microsoft.Security.Application;
+using NewBlog.Domain.Abstract;
 using NewBlog.Domain.Entities;
 using NewBlog.WebUI.Models;
 using System;
@@ -51,10 +52,22 @@ namespace NewBlog.WebUI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(EditViewModel evm)
+        [ValidateInput(false)]
+        public ActionResult Create(EditViewModel evm, HttpPostedFileBase file)
         {
+            evm.Post.Description = Sanitizer.GetSafeHtmlFragment(evm.Post.Description);
+            evm.Post.ShortDescription = Sanitizer.GetSafeHtmlFragment(evm.Post.ShortDescription);
+            evm.Post.Title = Sanitizer.GetSafeHtmlFragment(evm.Post.Title);
+            evm.Post.VdeoUrl = Sanitizer.GetSafeHtmlFragment(evm.Post.VdeoUrl);
+
             if (ModelState.IsValid)
             {
+                if (evm.Post.ImgUrl != null)
+                {
+                    string path = Server.MapPath("~/Content/Uploads/" + file.FileName);
+                    file.SaveAs(path);
+                    evm.Post.ImgUrl = "~/Content/Uploads/" + file.FileName;
+                }
                 List<Tag> tags = new List<Tag>();
                 IList<Tag> allTags = _blogRepository.Tags();
                 for (int i = 0; i < evm.TagIndexes.Length; i++)
@@ -102,9 +115,14 @@ namespace NewBlog.WebUI.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(EditViewModel evm, HttpPostedFileBase file)
         {
-
+            evm.Post.Description = Sanitizer.GetSafeHtmlFragment(evm.Post.Description);
+            evm.Post.ShortDescription = Sanitizer.GetSafeHtmlFragment(evm.Post.ShortDescription);
+            evm.Post.Title = Sanitizer.GetSafeHtmlFragment(evm.Post.Title);
+            evm.Post.VdeoUrl = Sanitizer.GetSafeHtmlFragment(evm.Post.VdeoUrl);
+            
             if (ModelState.IsValid)
             {
                 if (evm.Post.ImgUrl == null)
@@ -116,9 +134,7 @@ namespace NewBlog.WebUI.Controllers
                     string path = Server.MapPath("~/Content/Uploads/" + file.FileName);
                                     file.SaveAs(path);
                                     evm.Post.ImgUrl = "~/Content/Uploads/" + file.FileName;  
-                }
-                         
-                
+                }               
 
                 List<Tag> tags = new List<Tag>();
                 IList<Tag> allTags = _blogRepository.Tags();
@@ -173,10 +189,14 @@ namespace NewBlog.WebUI.Controllers
             return View(new Category());
         }
 
-        [HttpPost]
+        
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        [HttpPost]
         public ActionResult AddCategory([Bind(Include = "CategoryId, Name")]Category category)
         {
+            category.Name = Sanitizer.GetSafeHtml(category.Name);
+
             if (ModelState.IsValid)
             {
                _blogRepository.SaveCategory(category);
@@ -194,8 +214,10 @@ namespace NewBlog.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult AddTag([Bind(Include = "TagId, Name")]Tag tag)
         {
+            tag.Name = Sanitizer.GetSafeHtmlFragment(tag.Name);
             if (ModelState.IsValid)
             {
                 _blogRepository.SaveTag(tag);

@@ -39,8 +39,12 @@
             </div>
         </div>
      </div>
+    <div id="commentId">
         @Html.Action("AddComment", "Blog", new { postId = Model.Post.Id })
         @Html.Partial("_Comments", Model.Post.Comments)
+    </div>
+    
+        
 
 
 </div>

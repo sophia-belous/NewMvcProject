@@ -30,7 +30,7 @@
             <input id="like_@Model.Id" type="checkbox" checked="@isLiked" class="@style like" onchange="SendLike(@Model.Id, this.checked, @isLogged)">
             <span id="likesCount">@Model.Likes.Count likes</span>
         </span>
-        <span class="icon icon--comment">@Model.Comments.Count comments</span>
+        <span class="icon icon--comment"><a style="color: inherit;" href="@Url.Action("Post", "Blog", new { id = Model.Id })#commentId">@Model.Comments.Count comments</a></span>
     </footer>
 </article>
 

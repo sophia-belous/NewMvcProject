@@ -13,8 +13,7 @@
                         @Html.AntiForgeryToken()
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.PostId)
-
-                        <textarea placeholder="Write here!" name="Description" id="Description"></textarea>
+                        @Html.TextAreaFor(model => model.Description, new { placeholder = "Write here!" })
 
                         @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                         <button type="submit" id="button-comment" class="btn btn-lg btn-success btn-block"><i class="fa fa-share"></i> Share</button>
@@ -24,3 +23,6 @@
         </div>
     </div>
 </div>
+
+@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")

@@ -14,13 +14,6 @@ namespace NewBlog.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                "Post",
-                "Archive/{year}/{month}/{title}", 
-                new { controller = "Blog", action = "Post" }
-            );
-
-
-            routes.MapRoute(
                 "Tag",
                 "Tag/{tag}",
                 new { controller = "Blog", action = "Tag" }
@@ -61,6 +54,12 @@ namespace NewBlog.WebUI
                 "Action",
                 "{action}",
                 new { controller = "Blog", action = "Posts" }
+            );
+
+            routes.MapRoute(
+                "Default",
+                "{controller}/{action}",
+                new { controller = "Account", action = "Login" }
             );
 
         }

@@ -1,4 +1,5 @@
-﻿using NewBlog.Domain.Abstract;
+﻿using Microsoft.Security.Application;
+using NewBlog.Domain.Abstract;
 using NewBlog.Domain.Entities;
 using NewBlog.WebUI.Models;
 using System;
@@ -41,9 +42,10 @@ namespace NewBlog.WebUI.Controllers
             return View(cpm);
         }
 
-
+        [ValidateInput(false)]
         public ViewResult Search(string s, int p = 1)
         {
+            s = Sanitizer.GetSafeHtmlFragment(s);
             ViewBag.Title = String.Format(@"Lists of posts found 
                         for search text ""{0}""", s);
 
@@ -51,8 +53,10 @@ namespace NewBlog.WebUI.Controllers
             return View("List", viewModel);
         }
 
+        [ValidateInput(false)]
         public ViewResult Category(string category, int p = 1)
         {
+            category = Sanitizer.GetSafeHtmlFragment(category);
             var viewModel = new ListViewModel(_blogRepository, category, "Category", p);
 
             if (viewModel.Category == null)
@@ -63,8 +67,10 @@ namespace NewBlog.WebUI.Controllers
             return View("List", viewModel);
         }
 
+        [ValidateInput(false)]
         public ViewResult Tag(string tag, int p = 1)
         {
+            tag = Sanitizer.GetSafeHtmlFragment(tag);
             var viewModel = new ListViewModel(_blogRepository, tag, "Tag", p);
 
             if (viewModel.Tag == null)
@@ -82,7 +88,7 @@ namespace NewBlog.WebUI.Controllers
             return PartialView("_Sidebars", widgetViewModel);
         }
 
-
+        [Authorize]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -105,8 +111,10 @@ namespace NewBlog.WebUI.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult AddComment([Bind(Include = "CommentId,PostId,UserId,CommentedOn,Description")] Comment comment)
         {
+            comment.Description = Sanitizer.GetSafeHtmlFragment(comment.Description);
             comment.CommentedOn = DateTime.Now;
             comment.User = _blogRepository.Users().First(x => x.Username == User.Identity.Name);
             if (ModelState.IsValid) 

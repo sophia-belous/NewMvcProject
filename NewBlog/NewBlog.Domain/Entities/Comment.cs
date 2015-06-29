@@ -14,7 +14,11 @@ namespace NewBlog.Domain.Entities
         public int CommentId { get; set; }
         public int PostId { get; set; }
         public int UserId { get; set; }
+
+        [Required]
         public DateTime CommentedOn { get; set; }
+
+        [Required(ErrorMessage = "Please, write your comment!")]
         public string Description { get; set; }
 
         public virtual Post Post { get; set; }
