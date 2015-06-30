@@ -4,11 +4,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace NewBlog.UnitTests
 {
     [TestClass]
-    public class UnitTest1
+    public class BlogRepositoryTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void TotalPostsShoulsReturnCountOfPosts()
         {
+
         }
     }
 }

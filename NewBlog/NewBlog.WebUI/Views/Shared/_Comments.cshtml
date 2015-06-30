@@ -1,15 +1,15 @@
 ﻿@model IEnumerable<NewBlog.Domain.Entities.Comment>
-
 <div class="comments-container">
     <ul id="comments-list" class="comments-list">
-        @foreach (var item in Model)
+        @foreach (var item in Model.OrderByDescending(c => c.CommentedOn))
         {
+            string style = item.User.Username == "Sophia" ? "by-author" : "";
             <li>
                 <div class="comment-main-level">
                     <div class="comment-avatar"><img src="~/Content/Uploads/avatar.jpg" alt=""></div>
                     <div class="comment-box">
                         <div class="comment-head">
-                            <h6 class="comment-name by-author">@item.User.Username</h6>
+                            <h6 class="comment-name @style">@item.User.Username</h6>
                             <span>@item.CommentedOn</span>
                         </div>
                         <div class="comment-content">

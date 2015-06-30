@@ -540,6 +540,7 @@
     <Content Include="Views\Shared\_Categories.cshtml" />
     <Content Include="Views\Admin\Tags.cshtml" />
     <Content Include="Views\Admin\AddTag.cshtml" />
+    <Content Include="Views\Shared\test.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
