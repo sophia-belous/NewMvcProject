@@ -117,6 +117,7 @@ namespace NewBlog.WebUI.Controllers
             comment.Description = Sanitizer.GetSafeHtmlFragment(comment.Description);
             comment.CommentedOn = DateTime.Now;
             comment.User = _blogRepository.Users().First(x => x.Username == User.Identity.Name);
+
             if (ModelState.IsValid) 
             {
                 _blogRepository.SaveComment(comment);

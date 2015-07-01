@@ -38,8 +38,8 @@ namespace NewBlog.WebUI.Controllers
             List<Category> categories = new List<Category> { category};
 
             Post post = new Post() { Tags = tags, Category = category};
-            IList<Tag> allTags = _blogRepository.Tags();
-            IList<Category> allCategories = _blogRepository.Categories();
+            IList<Tag> allTags = _blogRepository.Tags().ToList();
+            IList<Category> allCategories = _blogRepository.Categories().ToList();
             int[] tagIndexes = post.Tags.Select(x => x.TagId).ToArray();
             int[] categoryIndexes = new int[] { category.CategoryId };            
 
@@ -71,14 +71,14 @@ namespace NewBlog.WebUI.Controllers
                     
 
                 List<Tag> tags = new List<Tag>();
-                IList<Tag> allTags = _blogRepository.Tags();
+                IList<Tag> allTags = _blogRepository.Tags().ToList();
                 for (int i = 0; i < evm.TagIndexes.Length; i++)
                 {
                     tags.Add(allTags.First(t => t.TagId == evm.TagIndexes[i]));
                 }
 
                 List<Category> categories = new List<Category>();
-                IList<Category> allCategories = _blogRepository.Categories();
+                IList<Category> allCategories = _blogRepository.Categories().ToList();
                 categories.Add(allCategories.First(c => c.CategoryId == evm.CategoryIndexes[0]));
 
                 evm.Post.Tags = tags;
@@ -102,10 +102,10 @@ namespace NewBlog.WebUI.Controllers
             Post post = _blogRepository.Posts()
                 .FirstOrDefault(g => g.Id == id);
 
-            IList<Tag> allTags = _blogRepository.Tags();
+            IList<Tag> allTags = _blogRepository.Tags().ToList();
             int[] tagIndexes = post.Tags.Select(x => x.TagId).ToArray();
 
-            IList<Category> allCategories = _blogRepository.Categories();
+            IList<Category> allCategories = _blogRepository.Categories().ToList();
             int[] categoryIndexes = new int[] { post.Category.CategoryId };
 
             EditViewModel evm = new EditViewModel();
@@ -150,14 +150,14 @@ namespace NewBlog.WebUI.Controllers
                 }               
 
                 List<Tag> tags = new List<Tag>();
-                IList<Tag> allTags = _blogRepository.Tags();
+                IList<Tag> allTags = _blogRepository.Tags().ToList();
                 for (int i = 0; i < evm.TagIndexes.Length; i++)
                 {
                     tags.Add(allTags.First(t => t.TagId == evm.TagIndexes[i]));
                 }
 
                 List<Category> categories = new List<Category>();
-                IList<Category> allCategories = _blogRepository.Categories();
+                IList<Category> allCategories = _blogRepository.Categories().ToList();
                 categories.Add(allCategories.First(c => c.CategoryId == evm.CategoryIndexes[0]));
 
                 evm.Post.Tags = tags;

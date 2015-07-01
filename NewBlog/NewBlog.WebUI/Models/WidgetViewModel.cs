@@ -11,9 +11,9 @@ namespace NewBlog.WebUI.Models
     {
         public WidgetViewModel(IBlogRepository blogRepository)
         {
-            Categories = blogRepository.Categories();
-            Tags = blogRepository.Tags();
-            LatestPosts = blogRepository.Posts(0, 5);
+            Categories = blogRepository.Categories().ToList();
+            Tags = blogRepository.Tags().ToList();
+            LatestPosts = blogRepository.Posts(0, 5).ToList();
         }
  
         public IList<Category> Categories { get; private set; }

@@ -43,14 +43,25 @@ namespace NewBlog.Domain.Concrete
             _blogContext.SaveChanges();*/
         }
 
-        public IList<Post> Posts(int pageNo, int pageSize)
+        private IQueryable<Post> SearchPostsBy(IQueryable<Post> posts, int pageNo, int pageSize)
+        {
+            return posts
+                .Where(p => p.Published)
+                .OrderByDescending(p => p.PostedOn)
+                .Skip(pageNo * pageSize)
+                .Take(pageSize)
+                .Include(p => p.Category)
+                .Include(p => p.Tags);
+        }
+
+        public IQueryable<Post> Posts(int pageNo, int pageSize)
         {
             var query = _blogContext.Posts
                 .Where(p => p.Published)
                 .OrderByDescending(p => p.PostedOn)
                 .Skip(pageNo * pageSize)
                 .Take(pageSize)
-                .Include(b => b.Category).ToList();
+                .Include(b => b.Category);
 
             return query;
 
@@ -58,34 +69,22 @@ namespace NewBlog.Domain.Concrete
 
         public int TotalPosts()
         {
-            return _blogContext.Posts.Where(p => p.Published).Count();
+            return _blogContext.Posts.Count(p => p.Published);
         }
 
 
-        public IList<Post> PostsForCategory(string categorySlug, int pageNo, int pageSize)
+        public IQueryable<Post> PostsForCategory(string categorySlug, int pageNo, int pageSize)
         {
             var posts = _blogContext.Posts
-                      .Where(p => p.Published && p.Category.UrlSlug.Equals(categorySlug))
-                      .OrderByDescending(p => p.PostedOn)
-                      .Skip(pageNo * pageSize)
-                      .Take(pageSize)
-                      .Include(p => p.Category)
-                      .ToList();
+                      .Where(p => p.Category.UrlSlug.Equals(categorySlug));
 
-            var postIds = posts.Select(p => p.Id).ToList();
-
-            return _blogContext.Posts
-                .Where(p => postIds.Contains(p.Id))
-                .OrderByDescending(p => p.PostedOn)
-                .Include(p => p.Tags)
-                .ToList();
+            return SearchPostsBy(posts, pageNo, pageSize);
         }
 
         public int TotalPostsForCategory(string categorySlug)
         {
             return _blogContext.Posts
-                .Where(p => p.Published && p.Category.UrlSlug.Equals(categorySlug))
-                .Count();
+                .Count(p => p.Published && p.Category.UrlSlug.Equals(categorySlug));
         }
 
         public Category Category(string categorySlug)
@@ -96,31 +95,19 @@ namespace NewBlog.Domain.Concrete
         }
 
 
-        public IList<Post> PostsForTag(string tagSlug, int pageNo, int pageSize)
+        public IQueryable<Post> PostsForTag(string tagSlug, int pageNo, int pageSize)
         {
             var posts = _blogContext.Posts
-                    .Where(p => p.Published && p.Tags.Any(t => t.UrlSlug.Equals(tagSlug)))
-                    .OrderByDescending(p => p.PostedOn)
-                    .Skip(pageNo * pageSize)
-                    .Take(pageSize)
-                    .Include(p => p.Category)
-                    .ToList();
+                .Where(p => p.Tags.Any(t => t.UrlSlug.Equals(tagSlug)));
 
-            var postIds = posts.Select(p => p.Id).ToList();
-
-            return _blogContext.Posts
-                          .Where(p => postIds.Contains(p.Id))
-                          .OrderByDescending(p => p.PostedOn)
-                          .Include(p => p.Tags)
-                          .ToList();
+            return SearchPostsBy(posts, pageNo, pageSize);
 
         }
 
         public int TotalPostsForTag(string tagSlug)
         {
             return _blogContext.Posts
-                .Where(p => p.Published && p.Tags.Any(t => t.UrlSlug.Equals(tagSlug)))
-                .Count();
+                .Count(p => p.Published && p.Tags.Any(t => t.UrlSlug.Equals(tagSlug)));
         }
 
         public Tag Tag(string tagSlug)
@@ -130,30 +117,18 @@ namespace NewBlog.Domain.Concrete
         }
 
 
-        public IList<Post> PostsForSearch(string search, int pageNo, int pageSize)
+        public IQueryable<Post> PostsForSearch(string search, int pageNo, int pageSize)
         {
             var posts = _blogContext.Posts
-                        .Where(p => p.Published && (p.Title.Contains(search) || p.Category.Name.Equals(search) || p.Tags.Any(t => t.Name.Equals(search))))
-                        .OrderByDescending(p => p.PostedOn)
-                        .Skip(pageNo * pageSize)
-                        .Take(pageSize)
-                        .Include(p => p.Category)
-                        .ToList();
+                        .Where(p => (p.Title.Contains(search) || p.Category.Name.Equals(search) || p.Tags.Any(t => t.Name.Equals(search))));
 
-            var postIds = posts.Select(p => p.Id).ToList();
-
-            return _blogContext.Posts
-                  .Where(p => postIds.Contains(p.Id))
-                  .OrderByDescending(p => p.PostedOn)
-                  .Include(p => p.Tags)
-                  .ToList();
+            return SearchPostsBy(posts, pageNo, pageSize);
         }
 
         public int TotalPostsForSearch(string search)
         {
             return _blogContext.Posts
-            .Where(p => p.Published && (p.Title.Contains(search) || p.Category.Name.Equals(search) || p.Tags.Any(t => t.Name.Equals(search))))
-            .Count();
+            .Count(p => p.Published && (p.Title.Contains(search) || p.Category.Name.Equals(search) || p.Tags.Any(t => t.Name.Equals(search))));
 
         }
 
@@ -168,20 +143,20 @@ namespace NewBlog.Domain.Concrete
 
         }
 
-        public IList<Category> Categories()
+        public IQueryable<Category> Categories()
         {
-            return _blogContext.Categories.OrderBy(p => p.Name).ToList();
+            return _blogContext.Categories.OrderBy(p => p.Name);
         }
 
 
-        public IList<Tag> Tags()
+        public IQueryable<Tag> Tags()
         {
-            return _blogContext.Tags.OrderBy(p => p.Name).ToList();
+            return _blogContext.Tags.OrderBy(p => p.Name);
         }
 
-        public IList<Post> Posts()
+        public IQueryable<Post> Posts()
         {
-            return _blogContext.Posts.ToList();
+            return _blogContext.Posts;
         }
 
 
@@ -236,15 +211,15 @@ namespace NewBlog.Domain.Concrete
             return dbEntry;
         }
 
-        public IList<UserProfile> Users()
+        public IQueryable<UserProfile> Users()
         {
-            return _blogContext.Users.ToList();
+            return _blogContext.Users;
         }
 
 
-        public IList<Comment> Comments()
+        public IQueryable<Comment> Comments()
         {
-            return _blogContext.Comments.ToList();
+            return _blogContext.Comments;
         }
 
         public void SaveComment(Comment comment)
