@@ -530,7 +530,6 @@
     <Content Include="Views\Admin\List.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\tinymce_jquery_full.cshtml" />
-    <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Shared\_Comments.cshtml" />
     <Content Include="Views\Blog\AddComment.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -541,6 +540,7 @@
     <Content Include="Views\Admin\Tags.cshtml" />
     <Content Include="Views\Admin\AddTag.cshtml" />
     <Content Include="Views\Shared\test.cshtml" />
+    <Content Include="Views\Shared\_NoElementsFound.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

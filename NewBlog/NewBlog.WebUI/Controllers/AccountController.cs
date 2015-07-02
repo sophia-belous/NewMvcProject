@@ -24,27 +24,28 @@ namespace NewBlog.WebUI.Controllers
         [ValidateInput(false)]
         public ActionResult Login(Login loginData, string returnUrl)
         {
-            loginData.Username = Sanitizer.GetSafeHtmlFragment(loginData.Username);
-            loginData.Password = Sanitizer.GetSafeHtmlFragment(loginData.Password);
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                if (WebSecurity.Login(loginData.Username, loginData.Password, loginData.RememberMe))
-                {
-                    if (returnUrl != null)
-                    {
-                        return Redirect(returnUrl); 
-                    }
-                    return RedirectToAction("Posts", "Blog");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Sorry, the username or password is invalid");
-                    return View(loginData);
-                }
+                ModelState.AddModelError("", "Sorry, the username or password is invalid");
+                return View(loginData);
             }
 
-            ModelState.AddModelError("", "Sorry, the username or password is invalid");
-            return View(loginData);
+            loginData.Username = Sanitizer.GetSafeHtmlFragment(loginData.Username);
+            loginData.Password = Sanitizer.GetSafeHtmlFragment(loginData.Password);
+
+
+            if (WebSecurity.Login(loginData.Username, loginData.Password, loginData.RememberMe))
+            {
+                if (returnUrl != null)
+                    return Redirect(returnUrl); 
+
+                return RedirectToAction("Posts", "Blog");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Sorry, the username or password is invalid");
+                return View(loginData);
+            }            
         }
 
         [HttpGet]
@@ -57,46 +58,32 @@ namespace NewBlog.WebUI.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(Register registerData)
         {
-            registerData.Username = Sanitizer.GetSafeHtmlFragment(registerData.Username);
-            registerData.Password = Sanitizer.GetSafeHtmlFragment(registerData.Password);
-            bool createdUser = false;
-            string errMessage = string.Empty;
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    WebSecurity.CreateUserAndAccount(registerData.Username, registerData.Password);
-                    Roles.AddUserToRole(registerData.Username, "user");
-                    createdUser = true;
-                    return RedirectToAction("Posts", "Blog");
-                    
-                }
-                catch (MembershipCreateUserException exception)
-                {
-                    ModelState.AddModelError("", "Sorry, the username is already exists");
-                    createdUser = false;
-                    return View(registerData);
-                }
-
-                if(createdUser)
-                {
-                    if (WebSecurity.Login(registerData.Username, registerData.Password))
-                        return RedirectToAction("Posts", "Blog");
-                    else
-                        ModelState.AddModelError("", "Error logging user in with that username/password.");
-                    return View(registerData);
-
-                }
-                else
-                {
-                    ModelState.AddModelError("", errMessage);
-                    return View(registerData);
-                }
+                ModelState.AddModelError("", "Sorry, the username is already exists");
+                return View(registerData);
             }
 
-            ModelState.AddModelError("", "Sorry, the username is already exists");
-            return View(registerData);
+            registerData.Username = Sanitizer.GetSafeHtmlFragment(registerData.Username);
+            registerData.Password = Sanitizer.GetSafeHtmlFragment(registerData.Password);
+
+            try
+            {
+                WebSecurity.CreateUserAndAccount(registerData.Username, registerData.Password);
+                Roles.AddUserToRole(registerData.Username, "user");
+
+                if (WebSecurity.Login(registerData.Username, registerData.Password))
+                    return RedirectToAction("Posts", "Blog");
+                else
+                    ModelState.AddModelError("", "Error logging user in with that username/password.");
+                return View(registerData);
+                    
+            }
+            catch (MembershipCreateUserException exception)
+            {
+                ModelState.AddModelError("", "Sorry, the username is already exists");
+                return View(registerData);
+            }
         }
 
         public ActionResult Logout()

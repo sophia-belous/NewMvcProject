@@ -3,24 +3,15 @@
 @model ListViewModel
 
 <div id="content">
-
     <center><h1>@ViewBag.Title</h1></center>
 
     @Html.Partial("_Pager", Model)
 
-    @if (Model.Posts.Count > 0)
+    @foreach (var post in Model.Posts)
     {
-        foreach (var post in Model.Posts)
-        {
-            <div class="jumbotron">
-                @Html.Partial("_PostTemplate", post)
-            </div>
-
-        }
-    }
-    else
-    {
-        <p>No posts found!</p>
+        <div class="jumbotron">
+            @Html.Partial("_PostTemplate", post)
+        </div>
     }
 </div>
 

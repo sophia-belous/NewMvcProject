@@ -2,14 +2,14 @@
 @model WidgetViewModel
 
 <ul class="raUL raEqualHeight raOuter">
-    @Html.Partial("_Categories", Model.Categories)
+    @Html.Partial("_Categories", Model)
 </ul>
 <br />
 <ul class="nav text-center">
-    @Html.Partial("_Tags", Model.Tags)
+    @Html.Partial("_Tags", Model)
 </ul>
 <br />
 <ul class="nav text-center">
-    @Html.Partial("_LatestPosts", Model.LatestPosts)
+    @Html.Partial("_LatestPosts", Model)
 </ul>
 

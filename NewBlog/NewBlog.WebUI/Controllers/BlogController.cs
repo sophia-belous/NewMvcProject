@@ -19,12 +19,20 @@ namespace NewBlog.WebUI.Controllers
             _blogRepository = blogRepository;
         }
 
-        // GET: Blog
         public ViewResult Posts(int p = 1)
         {
             var viewModel = new ListViewModel(_blogRepository, p);
-            ViewBag.Title = "Latest Posts";
-            return View("List", viewModel);
+            if (viewModel.Posts.Count > 0)
+            {
+                ViewBag.Title = "Latest Posts";
+                return View("List", viewModel);
+            }
+
+            ViewBag.Message = "posts";
+            ViewBag.Layout = "_Layout";
+            return View("_NoElementsFound");
+            
+            
         }
 
         public ViewResult Post(int id)
@@ -32,6 +40,7 @@ namespace NewBlog.WebUI.Controllers
             CommentPostModel cpm = new CommentPostModel();
                 cpm.Post = _blogRepository.Post(id);
                 cpm.Comment = new Comment() { PostId = cpm.Post.Id };
+                cpm.IsCommentsAllowed = User.Identity.IsAuthenticated? true : false;
 
             if (cpm.Post == null)
                 throw new HttpException(404, "Post not found");
@@ -85,6 +94,7 @@ namespace NewBlog.WebUI.Controllers
         public PartialViewResult Sidebars()
         {
             var widgetViewModel = new WidgetViewModel(_blogRepository);
+
             return PartialView("_Sidebars", widgetViewModel);
         }
 
@@ -114,31 +124,29 @@ namespace NewBlog.WebUI.Controllers
         [ValidateInput(false)]
         public ActionResult AddComment([Bind(Include = "CommentId,PostId,UserId,CommentedOn,Description")] Comment comment)
         {
+            if (!ModelState.IsValid)
+                return RedirectToAction("Post", new { id = comment.PostId });
+
             comment.Description = Sanitizer.GetSafeHtmlFragment(comment.Description);
             comment.CommentedOn = DateTime.Now;
             comment.User = _blogRepository.Users().First(x => x.Username == User.Identity.Name);
 
-            if (ModelState.IsValid) 
-            {
-                _blogRepository.SaveComment(comment);
-                return RedirectToAction("Post", new { id = comment.PostId });
-            }
+            _blogRepository.SaveComment(comment);
+
             return RedirectToAction("Post", new { id = comment.PostId });
+            
         }
 
         [HttpPost]
         public ActionResult AddLike(int postId, bool state)
         {
             if (state)
-            {
                 _blogRepository.AddLike(postId, User.Identity.Name);
-            }
             else
-            {
                 _blogRepository.RemoveLike(postId, User.Identity.Name);
-            }
 
-            return Json(new { success = true, likesCount = _blogRepository.Post(postId).Likes.Count }, JsonRequestBehavior.AllowGet);
+            return Json(new { success = true, likesCount = _blogRepository.Post(postId).Likes.Count },
+                JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)

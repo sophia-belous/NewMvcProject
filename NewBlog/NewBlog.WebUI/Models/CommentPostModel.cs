@@ -10,5 +10,6 @@ namespace NewBlog.WebUI.Models
     {
         public Post Post { get; set; }
         public Comment Comment { get; set; }
+        public bool IsCommentsAllowed { get; set; }
     }
 }

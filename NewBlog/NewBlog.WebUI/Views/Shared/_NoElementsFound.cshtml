@@ -1,0 +1,11 @@
+﻿@{
+    string act = ViewBag.Action;
+    Layout = "~/Views/Shared/"+ ViewBag.Layout +".cshtml";    
+}
+
+@if (act != null)
+{
+    Html.Action(act, "Admin");
+}
+
+<p>No @ViewBag.Message found!</p>

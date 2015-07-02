@@ -11,8 +11,10 @@ namespace NewBlog.Domain.Entities
     public class Like
     {
         [Key]
-        public int LikeId { get; set; }
+        [Column(Order = 1)]
         public int UserId { get; set; }
+        [Key]
+        [Column(Order = 2)]
         public int PostId { get; set; }
 
         [ForeignKey("UserId")]

@@ -40,7 +40,7 @@
         </div>
      </div>
     <div id="commentId">
-        @if (User.Identity.IsAuthenticated)
+        @if (Model.IsCommentsAllowed)
         {
             @Html.Action("AddComment", "Blog", new { postId = Model.Post.Id })
         }

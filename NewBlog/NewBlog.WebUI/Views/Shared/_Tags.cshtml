@@ -1,17 +1,17 @@
-﻿@using NewBlog.Domain.Entities 
-@model IList<Tag>
+﻿@using NewBlog.WebUI.Models
+@model WidgetViewModel
 
 <li class="nav-header text-center"><h2>Tags</h2></li>
 
-    @if (Model.Count > 0)
+@if (Model.NotNullOfTags)
+{
+    foreach (var tag in Model.Tags)
     {
-        foreach (var tag in Model)
-        {
-            <li class="tags">@Html.TagLink(tag)</li>
-        }
+        <li class="tags">@Html.TagLink(tag)</li>
     }
-    else
-    {
-        <p>No tags found!</p>
-    }
+}
+else
+{
+    <p>No tags found!</p>
+}
 
